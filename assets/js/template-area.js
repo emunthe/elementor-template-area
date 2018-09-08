@@ -10,6 +10,7 @@
 
         $(thisElementTitle).click(function(ev) {
           console.log( "Handler", ev);
+          console.log( "data-value", ev.currentTarget.attributes['data-id'].value);
         });
 
     };
