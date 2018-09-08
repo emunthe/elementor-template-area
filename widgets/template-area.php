@@ -356,7 +356,7 @@ class Template_Area extends Widget_Base {
 				foreach ( $tabs as $index => $item ) :
 					$tab_count = $index + 1;
 					?>
-					<div class="elementor-template-area-content" <?php echo 'data-content-link="' . $tab_count . '"'; ?>><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
+					<div class="elementor-template-area-content-item" <?php echo 'data-content-link="' . $tab_count . '"'; ?>><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
 				<?php endforeach; ?>
 			</div>
 		</div>
