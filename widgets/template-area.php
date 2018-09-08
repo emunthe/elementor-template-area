@@ -409,6 +409,7 @@ class Template_Area extends Widget_Base {
 		<div class="elementor-tabs" role="tablist">
 			<#
 			if ( settings.tabs ) {
+                console.log( settings.tabs );
 				var tabindex = view.getIDInt().toString().substr( 0, 3 );
 				#>
 				<div class="elementor-tabs-wrapper">
