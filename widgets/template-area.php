@@ -26,7 +26,7 @@ if (! defined('ABSPATH')) {
  *
  * @since 1.0.0
  */
-class TemplateArea extends Widget_Base {
+class Template_Area extends Widget_Base {
 
 	/**
 	 * Get widget name.
