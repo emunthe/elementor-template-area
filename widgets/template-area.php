@@ -348,7 +348,7 @@ class Template_Area extends Widget_Base {
 				foreach ( $tabs as $index => $item ) :
 					$tab_count = $index + 1;
 					?>
-					<div <?php echo 'class="elementor-template-area-link-' + $tab_count + '"'; ?>><?php echo $item['tab_title']; ?></div>
+					<div <?php echo 'class="elementor-template-area-link" data-link="' . $tab_count . '"'; ?>><?php echo $item['tab_title']; ?></div>
 				<?php endforeach; ?>
 			</div>
 			<div class="elementor-template-area-content">
@@ -356,7 +356,7 @@ class Template_Area extends Widget_Base {
 				foreach ( $tabs as $index => $item ) :
 					$tab_count = $index + 1;
 					?>
-					<div <?php echo 'class="elementor-template-area-content elementor-template-area-content-item-' + $tab_count + '"'; ?>><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
+					<div class="elementor-template-area-content" <?php echo 'data-content-link="' . $tab_count . '"'; ?>><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
 				<?php endforeach; ?>
 			</div>
 		</div>
@@ -384,26 +384,15 @@ class Template_Area extends Widget_Base {
 					_.each( settings.tabs, function( item, index ) {
 						var tabCount = index + 1;
 						#>
-						<div class="elementor-template-area-link" tabindex="{{ tabindex }}" data-link="{{ tabCount }}" role="template-link">{{{ item.tab_title }}}</div>
+						<div class="elementor-template-area-link" data-link="{{ tabCount }}">{{{ item.tab_title }}}</div>
 					<# } ); #>
 				</div>
 				<div class="elementor-template-area-content-wrapper">
 					<#
 					_.each( settings.tabs, function( item, index ) {
 						var tabCount = index + 1,
-							tabContentKey = view.getRepeaterSettingKey( 'tab_content', 'tabs',index );
-
-						view.addRenderAttribute( tabContentKey, {
-							'id': 'elementor-template-area-content-' + tabindex + tabCount,
-							'class': [ 'elementor-template-area-content', 'elementor-clearfix', 'elementor-repeater-item-' + item._id ],
-							'data-tab': tabCount,
-							'role' : 'template-area-tab',
-							'aria-labelledby' : 'elementor-template-area-title-' + tabindex + tabCount
-						} );
-
-						view.addInlineEditingAttributes( tabContentKey, 'advanced' );
 						#>
-						<div {{{ view.getRenderAttributeString( tabContentKey ) }}}>{{{ item.tab_content }}}</div>
+						<div class="elementor-template-area-content" data-content-link={{{tabCount}}}>{{{ item.tab_content }}}</div>
 					<# } ); #>
 				</div>
 			<# } #>
