@@ -352,7 +352,7 @@ class Template_Area extends Widget_Base {
 
 					$this->add_render_attribute( $tab_title_setting_key, [
 						'id' => 'elementor-tab-title-' . $id_int . $tab_count,
-						'class' => [ 'elementor-template-area-title', 'elementor-template-area-desktop-title' ],
+						'class' => [ 'elementor-template-area-link' ],
 						'data-tab' => $tab_count,
 						'tabindex' => $id_int . $tab_count,
 						'role' => 'template-area-tab',
@@ -379,16 +379,8 @@ class Template_Area extends Widget_Base {
 						'aria-labelledby' => 'elementor-tab-title-' . $id_int . $tab_count,
 					] );
 
-					$this->add_render_attribute( $tab_title_mobile_setting_key, [
-						'class' => [ 'elementor-template-area-title', 'elementor-template-area-mobile-title' ],
-						'tabindex' => $id_int . $tab_count,
-						'data-tab' => $tab_count,
-						'role' => 'template-area-tab',
-					] );
-
 					$this->add_inline_editing_attributes( $tab_content_setting_key, 'advanced' );
 					?>
-					<div <?php echo $this->get_render_attribute_string( $tab_title_mobile_setting_key ); ?>><?php echo $item['tab_title']; ?></div>
 					<div <?php echo $this->get_render_attribute_string( $tab_content_setting_key ); ?>><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
 				<?php endforeach; ?>
 			</div>
@@ -417,7 +409,7 @@ class Template_Area extends Widget_Base {
 					_.each( settings.tabs, function( item, index ) {
 						var tabCount = index + 1;
 						#>
-						<div id="elementor-template-area-title-{{ tabindex + tabCount }}" class="elementor-template-area-title elementor-template-area-desktop-title" tabindex="{{ tabindex + tabCount }}" data-tab="{{ tabCount }}" role="tab" aria-controls="elementor-template-area-content-{{ tabindex + tabCount }}">{{{ item.tab_title }}}</div>
+						<div class="elementor-template-area-link" tabindex="{{ tabindex }}" data-link="{{ tabCount }}" role="template-link">{{{ item.tab_title }}}</div>
 					<# } ); #>
 				</div>
 				<div class="elementor-template-area-content-wrapper">
@@ -436,7 +428,6 @@ class Template_Area extends Widget_Base {
 
 						view.addInlineEditingAttributes( tabContentKey, 'advanced' );
 						#>
-						<div class="elementor-template-area-title elementor-template-area-mobile-title" data-tab="{{ tabCount }}" role="tab">{{{ item.tab_title }}}</div>
 						<div {{{ view.getRenderAttributeString( tabContentKey ) }}}>{{{ item.tab_content }}}</div>
 					<# } ); #>
 				</div>
