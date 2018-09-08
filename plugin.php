@@ -1,88 +1,85 @@
 <?php
 namespace TemplateArea;
 
-use TemplateArea\Widgets\TemplateArea;
-
-if (! defined('ABSPATH')) {
-    exit;
-} // Exit if accessed directly
-
 /**
- * Main Plugin Class
+ * Class Plugin
  *
- * Register new elementor widget.
- *
- * @since 1.0.0
+ * Main Plugin class
+ * @since 1.2.0
  */
-class Plugin
-{
+class Plugin {
 
-    /**
-     * Constructor
-     *
-     * @since 1.0.0
-     *
-     * @access public
-     */
-    public function __construct()
-    {
-        $this->add_actions();
-    }
+	/**
+	 * Instance
+	 *
+	 * @since 1.2.0
+	 * @access private
+	 * @static
+	 *
+	 * @var Plugin The single instance of the class.
+	 */
+	private static $_instance = null;
 
-    /**
-     * Add Actions
-     *
-     * @since 1.0.0
-     *
-     * @access private
-     */
-    private function add_actions()
-    {
-        add_action('elementor/widgets/widgets_registered', [ $this, 'on_widgets_registered' ]);
+	/**
+	 * Instance
+	 *
+	 * Ensures only one instance of the class is loaded or can be loaded.
+	 *
+	 * @since 1.2.0
+	 * @access public
+	 *
+	 * @return Plugin An instance of the class.
+	 */
+	public static function instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+	}
 
-        add_action('elementor/frontend/after_register_scripts', function () {
-            wp_register_script('template-area', plugins_url('/assets/js/template-area.js', __ELEMENTOR_TEMPLATE_AREA_FILE__), [ 'jquery' ], false, true);
-        });
-    }
+	/**
+	 * widget_scripts
+	 *
+	 * Load required plugin core files.
+	 *
+	 * @since 1.2.0
+	 * @access public
+	 */
+	public function widget_scripts() {
+		wp_register_script( 'elementor-template-area', plugins_url( '/assets/js/template-area.js', __FILE__ ), [ 'jquery' ], false, true );
+	}
 
-    /**
-     * On Widgets Registered
-     *
-     * @since 1.0.0
-     *
-     * @access public
-     */
-    public function on_widgets_registered()
-    {
-        $this->includes();
-        $this->register_widget();
-    }
+	/**
+	 * Include Widgets files
+	 *
+	 * Load widgets files
+	 *
+	 * @since 1.2.0
+	 * @access private
+	 */
+	private function include_widgets_files() {
+		require_once( __DIR__ . '/widgets/template-area.php' );
+		//require_once( __DIR__ . '/widgets/inline-editing.php' );
+	}
 
-    /**
-     * Includes
-     *
-     * @since 1.0.0
-     *
-     * @access private
-     */
-    private function includes()
-    {
-        require __DIR__ . '/widgets/template-area.php';
-    }
+	/**
+	 * Register Widgets
+	 *
+	 * Register new Elementor widgets.
+	 *
+	 * @since 1.2.0
+	 * @access public
+	 */
+	public function register_widgets() {
+		// Its is now safe to include Widgets files
+		$this->include_widgets_files();
 
-    /**
-     * Register Widget
-     *
-     * @since 1.0.0
-     *
-     * @access private
-     */
-    private function register_widget()
-    {
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new TemplateArea());
-    }
+		// Register Widgets
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Template_Area() );
+		//\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Inline_Editing() );
+	}
 
-    /**
+	/**
 	 *  Plugin class constructor
 	 *
 	 * Register plugin action hooks and filters
