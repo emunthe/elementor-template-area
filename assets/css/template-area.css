@@ -1,3 +1,7 @@
 .elementor-template-area {
     border: 1px solid red;
 }
+
+.elementor-template-area-title {
+    float: left;
+}
