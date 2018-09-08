@@ -40,7 +40,7 @@ class Template_Area extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'tabs';
+		return 'template-area';
 	}
 
 	/**
@@ -338,7 +338,7 @@ class Template_Area extends Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		$tabs = $this->get_settings_for_display( 'tabs' );
+		$tabs = $this->get_settings_for_display( 'template-area' );
 
 		$id_int = substr( $this->get_id_int(), 0, 3 );
 		?>
