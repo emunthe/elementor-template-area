@@ -39,7 +39,7 @@ class TemplateArea extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'links';
+		return 'template-area';
 	}
 
 	/**
