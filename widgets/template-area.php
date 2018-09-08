@@ -39,7 +39,7 @@ class TemplateArea extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'Links';
+		return 'Template Links';
 	}
 
 	/**
@@ -53,7 +53,7 @@ class TemplateArea extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Template Area', 'template-area' );
+		return __( 'Template Links', 'template-area' );
 	}
 
 	/**
@@ -67,7 +67,7 @@ class TemplateArea extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-tabs';
+		return 'eicon-document-file';
 	}
 
 	/**
@@ -428,6 +428,24 @@ class TemplateArea extends Widget_Base {
 					<# } ); #>
 				</div>
 				<div class="elementor-tabs-content-wrapper">
+                    <#
+					_.each( settings.tabs, function( item, index ) {
+						var tabCount = index + 1,
+							tabContentKey = view.getRepeaterSettingKey( 'tab_content', 'tabs',index );
+
+						view.addRenderAttribute( tabContentKey, {
+							'id': 'elementor-tab-content-' + tabindex + tabCount,
+							'class': [ 'elementor-tab-content', 'elementor-clearfix', 'elementor-repeater-item-' + item._id ],
+							'data-tab': tabCount,
+							'role' : 'tabpanel',
+							'aria-labelledby' : 'elementor-tab-title-' + tabindex + tabCount
+						} );
+
+						view.addInlineEditingAttributes( tabContentKey, 'advanced' );
+						#>
+						<div class="elementor-tab-title elementor-tab-mobile-title" data-tab="{{ tabCount }}" role="tab">{{{ item.tab_title }}}</div>
+						<div {{{ view.getRenderAttributeString( tabContentKey ) }}}>{{{ item.tab_content }}}</div>
+					<# } ); #>
 				</div>
 			<# } #>
 		</div>
