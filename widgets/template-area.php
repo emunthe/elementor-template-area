@@ -1,5 +1,5 @@
 <?php
-namespace TemplateLinker\Widgets;
+namespace TemplateArea\Widgets;
 use Elementor\Widget_Base;
 use Elementor\Repeater;
 use Elementor\Controls_Manager;
@@ -26,7 +26,7 @@ if (! defined('ABSPATH')) {
  *
  * @since 1.0.0
  */
-class TemplateLinker extends Widget_Base {
+class TemplateArea extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -53,7 +53,7 @@ class TemplateLinker extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Template Links', 'template-linker' );
+		return __( 'Template Links', 'template-area' );
 	}
 
 	/**
@@ -96,7 +96,7 @@ class TemplateLinker extends Widget_Base {
 		$this->start_controls_section(
 			'section_tabs',
 			[
-				'label' => __( 'Template Linker', 'template-linker' ),
+				'label' => __( 'Template Linker', 'template-area' ),
 			]
 		);
 
@@ -105,10 +105,10 @@ class TemplateLinker extends Widget_Base {
 		$repeater->add_control(
 			'tab_title',
 			[
-				'label' => __( 'Title & Content', 'template-linker' ),
+				'label' => __( 'Title & Content', 'template-area' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Tab Title', 'template-linker' ),
-				'placeholder' => __( 'Tab Title', 'template-linker' ),
+				'default' => __( 'Tab Title', 'template-area' ),
+				'placeholder' => __( 'Tab Title', 'template-area' ),
 				'label_block' => true,
 			]
 		);
@@ -130,7 +130,7 @@ class TemplateLinker extends Widget_Base {
 		}
 
 		$options = [
-			'0' => '— ' . __( 'Select', 'template-linker' ) . ' —',
+			'0' => '— ' . __( 'Select', 'template-area' ) . ' —',
 		];
 
 		$types = [];
@@ -143,7 +143,7 @@ class TemplateLinker extends Widget_Base {
 		$repeater->add_control(
 			'template_id',
 			[
-				'label' => __( 'Choose Template', 'template-linker' ),
+				'label' => __( 'Choose Template', 'template-area' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '0',
 				'options' => $options,
@@ -160,15 +160,15 @@ class TemplateLinker extends Widget_Base {
 		$this->add_control(
 			'tabs',
 			[
-				'label' => __( 'Links', 'template-linker' ),
+				'label' => __( 'Links', 'template-area' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
-						'tab_title' => __( 'Link #1', 'template-linker' ),
+						'tab_title' => __( 'Link #1', 'template-area' ),
 					],
 					[
-						'tab_title' => __( 'Link #2', 'template-linker' ),
+						'tab_title' => __( 'Link #2', 'template-area' ),
 					],
 				],
 				'title_field' => '{{{ tab_title }}}',
