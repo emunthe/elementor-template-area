@@ -3,7 +3,7 @@
 * Plugin Name: Elementor Template Area
 * Description: Elementor Addon Template - Template Area.
 * Plugin URI:  https://github.com/emunthe/elementor-template-area
-* Version:     0.2
+* Version:     0.3
 * Author:      Espen Munthe
 * Author URI:  http://espenmunthe.com
 * Text Domain: elementor-template-area
@@ -22,7 +22,7 @@ final class Elementor_Template_Area {
 	 * @since 1.2.0
 	 * @var string The plugin version.
 	 */
-	const VERSION = '0.2.0';
+	const VERSION = '0.3.0';
 
 	/**
 	 * Minimum Elementor Version
