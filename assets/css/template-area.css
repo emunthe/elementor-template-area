@@ -6,6 +6,6 @@
     float: left;
 }
 
-.elementor-template-area div["data-tab"] {
+.elementor-template-area .elementor-template-area-content-wrapper ["data-tab"] {
     display: none;
 }
