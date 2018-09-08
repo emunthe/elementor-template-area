@@ -11,6 +11,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+define( '__VERSION__', 0.3 );
+
 /**
  * @since 1.2.0
  */
@@ -22,7 +24,7 @@ final class Elementor_Template_Area {
 	 * @since 1.2.0
 	 * @var string The plugin version.
 	 */
-	const VERSION = '0.3.0';
+	const VERSION = '__VERSION__';
 
 	/**
 	 * Minimum Elementor Version
