@@ -1,10 +1,10 @@
 (function($) {
     var WidgetTemplateAreaHandler = function($scope, $) {
-        console.log('template-area.default', $scope.attributes);
+        console.log('template-area.default', $scope);
 
-        var thisElement = 'elementor-element-' + $scope.attributes['data-id'];
+        //var thisElement = 'elementor-element-' + $scope.attributes['data-id'];
 
-        console.log(thisElement);
+        //console.log(thisElement);
         //$( "#target" ).click(function() {
           //alert( "Handler for .click() called." );
         //});
