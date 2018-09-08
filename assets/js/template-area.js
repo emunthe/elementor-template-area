@@ -14,7 +14,7 @@
           console.log( "data-value", ev.currentTarget.attributes);
           console.log( "data-value", ev.currentTarget.attributes['data-link'].value);
           var dataTabValue = ev.currentTarget.attributes['data-link'].value;
-          var strJQ = '.elementor-template-area-content [data-content-link=""' + dataTabValue + '"]';
+          var strJQ = '.elementor-template-area-content [data-content-link="' + dataTabValue + '"]';
           console.log(strJQ);
           $(strJQ).show();
         });
