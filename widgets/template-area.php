@@ -39,7 +39,7 @@ class TemplateArea extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'tabs';
+		return 'links';
 	}
 
 	/**
@@ -53,7 +53,7 @@ class TemplateArea extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Tabs', 'elementor' );
+		return __( 'Template Links', 'elementor' );
 	}
 
 	/**
