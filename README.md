@@ -2,7 +2,7 @@
 
 This is not a commercial project.  All rights belong to elementor.com.
 
-** *This is a feature request to elementor.com* **
+_**This is a feature request to elementor.com**_
 
 ### The *elementor-template-area* plugin
 
