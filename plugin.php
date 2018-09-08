@@ -47,7 +47,7 @@ class Plugin {
 	 */
 	public function widget_scripts() {
 		wp_register_script( 'template-area', plugins_url( '/assets/js/template-area.js', __FILE__ ), [ 'jquery' ], false, true );
-		wp_enque_script( 'template-area' );
+		wp_enqueue_script( 'template-area' );
 	}
 
 	/**
