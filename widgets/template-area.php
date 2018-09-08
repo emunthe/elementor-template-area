@@ -338,7 +338,7 @@ class Template_Area extends Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		$tabs = $this->get_settings_for_display( 'template-area' );
+		$tabs = $this->get_settings_for_display( 'tabs' );
 
 		$id_int = substr( $this->get_id_int(), 0, 3 );
 		?>
