@@ -1,5 +1,6 @@
 <?php
 namespace TemplateArea\Widgets;
+
 use Elementor\Widget_Base;
 use Elementor\Repeater;
 use Elementor\Controls_Manager;
@@ -25,7 +26,7 @@ if (! defined('ABSPATH')) {
  *
  * @since 1.0.0
  */
-class Widget_Tabs extends Widget_Base {
+class TemplateArea extends Widget_Base {
 
 	/**
 	 * Get widget name.
