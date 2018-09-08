@@ -6,6 +6,6 @@
     float: left;
 }
 
-.elementor-template-area-content div["data-tab"] {
+.elementor-template-area div["data-tab"] {
     display: none;
 }
