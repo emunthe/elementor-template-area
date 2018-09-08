@@ -17,6 +17,7 @@ if (! defined('ABSPATH')) {
     exit;
 } // Exit if accessed directly
 
+
 /**
  * Elementor tabs widget.
  *
@@ -25,7 +26,7 @@ if (! defined('ABSPATH')) {
  *
  * @since 1.0.0
  */
-class Widget_Tabs extends Widget_Base {
+class TemplateArea extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -38,7 +39,7 @@ class Widget_Tabs extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'tabs';
+		return 'Template Links';
 	}
 
 	/**
@@ -52,7 +53,7 @@ class Widget_Tabs extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Tabs', 'elementor' );
+		return __( 'Template Links', 'template-area' );
 	}
 
 	/**
@@ -66,7 +67,7 @@ class Widget_Tabs extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-tabs';
+		return 'eicon-document-file';
 	}
 
 	/**
@@ -95,7 +96,7 @@ class Widget_Tabs extends Widget_Base {
 		$this->start_controls_section(
 			'section_tabs',
 			[
-				'label' => __( 'Tabs', 'elementor' ),
+				'label' => __( 'Template Linker', 'template-area' ),
 			]
 		);
 
@@ -104,44 +105,79 @@ class Widget_Tabs extends Widget_Base {
 		$repeater->add_control(
 			'tab_title',
 			[
-				'label' => __( 'Title & Content', 'elementor' ),
+				'label' => __( 'Title & Content', 'template-area' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Tab Title', 'elementor' ),
-				'placeholder' => __( 'Tab Title', 'elementor' ),
+				'default' => __( 'Tab Title', 'template-area' ),
+				'placeholder' => __( 'Tab Title', 'template-area' ),
 				'label_block' => true,
 			]
 		);
 
+		$templates = Module::get_templates();
+
+		if ( empty( $templates ) ) {
+
+			$this->add_control(
+				'no_templates',
+				[
+					'label' => false,
+					'type' => Controls_Manager::RAW_HTML,
+					'raw' => Module::empty_templates_message(),
+				]
+			);
+
+			return;
+		}
+
+		$options = [
+			'0' => '— ' . __( 'Select', 'template-area' ) . ' —',
+		];
+
+		$types = [];
+
+		foreach ( $templates as $template ) {
+			$options[ $template['template_id'] ] = $template['title'] . ' (' . $template['type'] . ')';
+			$types[ $template['template_id'] ] = $template['type'];
+		}
+
 		$repeater->add_control(
-			'tab_content',
+			'template_id',
 			[
-				'label' => __( 'Content', 'elementor' ),
-				'default' => __( 'Tab Content', 'elementor' ),
-				'placeholder' => __( 'Tab Content', 'elementor' ),
-				'type' => Controls_Manager::WYSIWYG,
-				'show_label' => false,
+				'label' => __( 'Choose Template', 'template-area' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => '0',
+				'options' => $options,
+				'types' => $types,
+				'label_block' => 'true',
 			]
 		);
+
+
+
+
+
 
 		$this->add_control(
 			'tabs',
 			[
-				'label' => __( 'Tabs Items', 'elementor' ),
+				'label' => __( 'Links', 'template-area' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
-						'tab_title' => __( 'Tab #1', 'elementor' ),
-						'tab_content' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
+						'tab_title' => __( 'Link #1', 'template-area' ),
 					],
 					[
-						'tab_title' => __( 'Tab #2', 'elementor' ),
-						'tab_content' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
+						'tab_title' => __( 'Link #2', 'template-area' ),
 					],
 				],
 				'title_field' => '{{{ tab_title }}}',
 			]
 		);
+
+
+
+
 
 		$this->add_control(
 			'view',
@@ -342,7 +378,7 @@ class Widget_Tabs extends Widget_Base {
 		?>
 		<div class="elementor-tabs" role="tablist">
 			<div class="elementor-tabs-wrapper">
-				<?php
+                <?php
 				foreach ( $tabs as $index => $item ) :
 					$tab_count = $index + 1;
 
@@ -361,7 +397,7 @@ class Widget_Tabs extends Widget_Base {
 				<?php endforeach; ?>
 			</div>
 			<div class="elementor-tabs-content-wrapper">
-				<?php
+                <?php
 				foreach ( $tabs as $index => $item ) :
 					$tab_count = $index + 1;
 
@@ -384,10 +420,11 @@ class Widget_Tabs extends Widget_Base {
 						'role' => 'tab',
 					] );
 
+
 					$this->add_inline_editing_attributes( $tab_content_setting_key, 'advanced' );
 					?>
 					<div <?php echo $this->get_render_attribute_string( $tab_title_mobile_setting_key ); ?>><?php echo $item['tab_title']; ?></div>
-					<div <?php echo $this->get_render_attribute_string( $tab_content_setting_key ); ?>><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
+					<div <?php echo $this->get_render_attribute_string( $tab_content_setting_key ); ?>><?php echo Plugin::elementor()->frontend->get_builder_content_for_display( $item['template_id'] ); ?></div>
 				<?php endforeach; ?>
 			</div>
 		</div>
@@ -418,7 +455,7 @@ class Widget_Tabs extends Widget_Base {
 					<# } ); #>
 				</div>
 				<div class="elementor-tabs-content-wrapper">
-					<#
+                    <#
 					_.each( settings.tabs, function( item, index ) {
 						var tabCount = index + 1,
 							tabContentKey = view.getRepeaterSettingKey( 'tab_content', 'tabs',index );
