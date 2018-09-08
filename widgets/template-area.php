@@ -81,7 +81,7 @@ class TemplateArea extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'Links', 'template Area' ];
+		return [ 'tabs', 'accordion', 'toggle' ];
 	}
 
 	/**
@@ -378,7 +378,7 @@ class TemplateArea extends Widget_Base {
 		?>
 		<div class="elementor-tabs" role="tablist">
 			<div class="elementor-tabs-wrapper">
-				<?php
+                <?php
 				foreach ( $tabs as $index => $item ) :
 					$tab_count = $index + 1;
 
