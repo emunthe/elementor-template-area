@@ -10,6 +10,8 @@
 
         $(thisElementTitle).click(function(ev) {
           console.log( "Handler", ev);
+          console.log( "data-value", ev.currentTarget);
+          console.log( "data-value", ev.currentTarget.attributes);
           console.log( "data-value", ev.currentTarget.attributes['data-id'].value);
         });
 
