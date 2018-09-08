@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Elementor Template Area
- * Description: Elementor Addon Template - Template Area.  
+ * Description: Elementor Addon Template - Template Area.
  * Plugin URI:  https://github.com/emunthe/elementor-template-area
  * Version:     0.2
  * Author:      Espen Munthe
@@ -14,7 +14,7 @@ if (! defined('ABSPATH')) {
 } // Exit if accessed directly
 
 define('__ELEMENTOR_TEMPLATE_AREA_FILE__', __FILE__);
-define('__ELEMENTOR_TEMPLATE_AREA_VERSION', 0.2);
+define('__ELEMENTOR_TEMPLATE_AREA_VERSION__', 0.2);
 
 
 
