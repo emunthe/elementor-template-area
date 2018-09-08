@@ -81,6 +81,24 @@ class Plugin
     {
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new TemplateArea());
     }
+
+    /**
+	 *  Plugin class constructor
+	 *
+	 * Register plugin action hooks and filters
+	 *
+	 * @since 1.2.0
+	 * @access public
+	 */
+	public function __construct() {
+
+		// Register widget scripts
+		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_scripts' ] );
+
+		// Register widgets
+		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+	}
 }
 
-new Plugin();
+// Instantiate Plugin Class
+Plugin::instance();
