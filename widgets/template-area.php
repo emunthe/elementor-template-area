@@ -18,6 +18,7 @@ if (! defined('ABSPATH')) {
     exit;
 } // Exit if accessed directly
 
+
 /**
  * Elementor tabs widget.
  *
@@ -39,7 +40,7 @@ class Template_Area extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'template-area';
+		return 'templatearea';
 	}
 
 	/**
