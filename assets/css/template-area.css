@@ -5,3 +5,7 @@
 .elementor-template-area-title {
     float: left;
 }
+
+.elementor-template-area-content div["data-tab"] {
+    display: none;
+}
