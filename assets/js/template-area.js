@@ -1,6 +1,6 @@
 (function($) {
     var WidgetTemplateAreaHandler = function($scope, $) {
-        console.log('template-area.default', $scope);
+        console.log('template-area.default', $scope[0]);
 
         //var thisElement = 'elementor-element-' + $scope.attributes['data-id'];
 
