@@ -164,7 +164,7 @@ class Template_Area extends Widget_Base {
 					'horizontal' => __( 'Horizontal', 'elementor' ),
 					'vertical' => __( 'Vertical', 'elementor' ),
 				],
-				'prefix_class' => 'elementor-tabs-view-',
+				'prefix_class' => 'elementor-template-area-view-',
 				'separator' => 'before',
 			]
 		);
@@ -194,7 +194,7 @@ class Template_Area extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tabs-wrapper' => 'width: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .elementor-template-area-wrapper' => 'width: {{SIZE}}{{UNIT}}',
 				],
 				'condition' => [
 					'type' => 'vertical',
@@ -217,7 +217,7 @@ class Template_Area extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-title, {{WRAPPER}} .elementor-tab-title:before, {{WRAPPER}} .elementor-tab-title:after, {{WRAPPER}} .elementor-tab-content, {{WRAPPER}} .elementor-tabs-content-wrapper' => 'border-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-tab-title, {{WRAPPER}} .elementor-tab-title:before, {{WRAPPER}} .elementor-tab-title:after, {{WRAPPER}} .elementor-tab-content, {{WRAPPER}} .elementor-template-area-content-wrapper' => 'border-width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -228,7 +228,7 @@ class Template_Area extends Widget_Base {
 				'label' => __( 'Border Color', 'elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-mobile-title, {{WRAPPER}} .elementor-tab-desktop-title.elementor-active, {{WRAPPER}} .elementor-tab-title:before, {{WRAPPER}} .elementor-tab-title:after, {{WRAPPER}} .elementor-tab-content, {{WRAPPER}} .elementor-tabs-content-wrapper' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-tab-mobile-title, {{WRAPPER}} .elementor-tab-desktop-title.elementor-active, {{WRAPPER}} .elementor-tab-title:before, {{WRAPPER}} .elementor-tab-title:after, {{WRAPPER}} .elementor-tab-content, {{WRAPPER}} .elementor-template-area-content-wrapper' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -240,7 +240,7 @@ class Template_Area extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-tab-desktop-title.elementor-active' => 'background-color: {{VALUE}};',
-					'{{WRAPPER}} .elementor-tabs-content-wrapper' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-template-area-content-wrapper' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -342,8 +342,8 @@ class Template_Area extends Widget_Base {
 
 		$id_int = substr( $this->get_id_int(), 0, 3 );
 		?>
-		<div class="elementor-tabs" role="tablist">
-			<div class="elementor-tabs-wrapper">
+		<div class="elementor-template-area" role="tablist">
+			<div class="elementor-template-area-wrapper">
 				<?php
 				foreach ( $tabs as $index => $item ) :
 					$tab_count = $index + 1;
@@ -362,7 +362,7 @@ class Template_Area extends Widget_Base {
 					<div <?php echo $this->get_render_attribute_string( $tab_title_setting_key ); ?>><?php echo $item['tab_title']; ?></div>
 				<?php endforeach; ?>
 			</div>
-			<div class="elementor-tabs-content-wrapper">
+			<div class="elementor-template-area-content-wrapper">
 				<?php
 				foreach ( $tabs as $index => $item ) :
 					$tab_count = $index + 1;
@@ -406,13 +406,13 @@ class Template_Area extends Widget_Base {
 	 */
 	protected function _content_template() {
 		?>
-		<div class="elementor-tabs" role="tablist">
+		<div class="elementor-template-area" role="tablist">
 			<#
 			if ( settings.tabs ) {
                 console.log( settings.tabs );
 				var tabindex = view.getIDInt().toString().substr( 0, 3 );
 				#>
-				<div class="elementor-tabs-wrapper">
+				<div class="elementor-template-area-wrapper">
 					<#
 					_.each( settings.tabs, function( item, index ) {
 						var tabCount = index + 1;
@@ -420,7 +420,7 @@ class Template_Area extends Widget_Base {
 						<div id="elementor-tab-title-{{ tabindex + tabCount }}" class="elementor-tab-title elementor-tab-desktop-title" tabindex="{{ tabindex + tabCount }}" data-tab="{{ tabCount }}" role="tab" aria-controls="elementor-tab-content-{{ tabindex + tabCount }}">{{{ item.tab_title }}}</div>
 					<# } ); #>
 				</div>
-				<div class="elementor-tabs-content-wrapper">
+				<div class="elementor-template-area-content-wrapper">
 					<#
 					_.each( settings.tabs, function( item, index ) {
 						var tabCount = index + 1,

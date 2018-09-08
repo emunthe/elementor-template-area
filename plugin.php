@@ -51,6 +51,19 @@ class Plugin {
 	}
 
 	/**
+	 * widget_styles
+	 *
+	 * Load required plugin core files.
+	 *
+	 * @since 1.2.0
+	 * @access public
+	 */
+	public function widget_styles() {
+		wp_register_style( 'template-area', plugins_url( '/assets/css/template-area.css', __FILE__ ), false, __VERSION__, 'all' );
+		wp_enqueue_style( 'template-area' );
+	}
+
+	/**
 	 * Include Widgets files
 	 *
 	 * Load widgets files
@@ -92,6 +105,7 @@ class Plugin {
 
 		// Register widget scripts
 		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_scripts' ] );
+		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_styles' ] );
 
 		// Register widgets
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
