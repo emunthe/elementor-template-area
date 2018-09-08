@@ -41,7 +41,7 @@ class Plugin
         add_action('elementor/widgets/widgets_registered', [ $this, 'on_widgets_registered' ]);
 
         add_action('elementor/frontend/after_register_scripts', function () {
-            wp_register_script('template-area', plugins_url('/assets/js/template-area.js', __ELEMENTOR_TEMPLATE_LINKER_FILE__), [ 'jquery' ], false, true);
+            wp_register_script('template-area', plugins_url('/assets/js/template-area.js', __ELEMENTOR_TEMPLATE_AREA_FILE__), [ 'jquery' ], false, true);
         });
     }
 
