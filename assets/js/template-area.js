@@ -4,12 +4,13 @@
         console.log('template-area.default', $scope[0].attributes['data-id']);
         console.log('template-area.default', $scope[0].attributes['data-id'].value);
 
-        var thisElement = 'elementor-element-' + $scope[0].attributes['data-id'].value;
+        var thisElement = '.elementor-element-' + $scope[0].attributes['data-id'].value;
+        var thisElementTitle = thisElement + ' .elementor-template-area-title'
+        console.log(thisElementTitle);
 
-        console.log(thisElement);
-        //$( "#target" ).click(function() {
-          //alert( "Handler for .click() called." );
-        //});
+        $(thisElementTitle).click(function(ev) {
+          alert( "Handler for .click() called.", ev);
+        });
 
     };
 
