@@ -1,7 +1,7 @@
 (function($) {
     var WidgetTemplateAreaHandler = function($scope, $) {
         console.log($scope);
-        console.log('here');
+        console.log('WidgetTemplateAreaHandler');
     };
 
     // Make sure you run this code under Elementor..
