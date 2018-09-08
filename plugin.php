@@ -46,7 +46,7 @@ class Plugin {
 	 * @access public
 	 */
 	public function widget_scripts() {
-		wp_register_script( 'template-area', plugins_url( '/assets/js/template-area.js', __FILE__ ), [ 'jquery' ], Elementor_Template_Area::VERSION, true );
+		wp_register_script( 'template-area', plugins_url( '/assets/js/template-area.js', __FILE__ ), [ 'jquery' ], VERSION, true );
 		wp_enqueue_script( 'template-area' );
 	}
 
