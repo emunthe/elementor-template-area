@@ -5,18 +5,18 @@
         console.log('template-area.default', $scope[0].attributes['data-id'].value);
 
         var thisElement = '.elementor-element-' + $scope[0].attributes['data-id'].value;
-        var thisElementTitle = thisElement + ' .elementor-template-area-title'
+        var thisElementTitle = thisElement + ' .elementor-template-area-link'
         console.log(thisElementTitle);
 
         $(thisElementTitle).click(function(ev) {
           console.log( "Handler", ev);
           console.log( "data-value", ev.currentTarget);
           console.log( "data-value", ev.currentTarget.attributes);
-          console.log( "data-value", ev.currentTarget.attributes['data-tab'].value);
-          var dataTabValue = ev.currentTarget.attributes['data-tab'].value;
-          var strJQ = 'elementor-template-area-content div["data-tab"=' + dataTabValue + ']';
-          console.log(strJQ);
-          $(strJQ).show();
+          //console.log( "data-value", ev.currentTarget.attributes['data-tab'].value);
+          //var dataTabValue = ev.currentTarget.attributes['data-tab'].value;
+          //var strJQ = 'elementor-template-area-content-item div["data-tab"=' + dataTabValue + ']';
+          //console.log(strJQ);
+          //$(strJQ).show();
         });
 
     };
