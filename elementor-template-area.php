@@ -13,8 +13,8 @@ if (! defined('ABSPATH')) {
     exit;
 } // Exit if accessed directly
 
-define('__elementor_template_area_FILE__', __FILE__);
-define('__elementor_template_area_VERSION', 0.1);
+define('__ELEMENTOR_TEMPLATE_AREA_FILE__', __FILE__);
+define('__ELEMENTOR_TEMPLATE_AREA_VERSION', 0.1);
 
 
 
