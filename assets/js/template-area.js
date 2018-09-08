@@ -9,7 +9,7 @@
         console.log(thisElementTitle);
 
         $(thisElementTitle).click(function(ev) {
-          alert( "Handler for .click() called.", ev);
+          console.log( "Handler", ev);
         });
 
     };
