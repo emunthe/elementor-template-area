@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: Elementor Template Linker
- * Description: Elementor Template Linker.
+ * Plugin Name: Elementor Template Area
+ * Description: Elementor Template Area.  This plugin is a method of using elementor 
  * Plugin URI:  http://espenmunthe.com
  * Version:     0.1.0
  * Author:      Espen Munthe
