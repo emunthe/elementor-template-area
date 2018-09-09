@@ -11,7 +11,6 @@ use Elementor\Scheme_Typography;
 //use ElementorPro\Plugin;
 //use ElementorPro\Modules\Library\Module;
 
-use ElementorPro\Base\Base_Widget;
 
 if (! defined('ABSPATH')) {
     exit;
@@ -20,7 +19,7 @@ if (! defined('ABSPATH')) {
 
 
 
-class Template_Area_Links extends Base_Widget {
+class Template_Area_Links extends Widget_Base {
 
 	/**
 	 * Get widget name.

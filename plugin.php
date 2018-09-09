@@ -90,6 +90,7 @@ class Plugin {
 
 		// Register Widgets
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Template_Area_Links() );
+		
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Template_Area() );
 	}
 

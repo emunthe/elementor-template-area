@@ -1,5 +1,6 @@
 (function($) {
     var WidgetTemplateAreaHandler = function($scope, $) {
+        /*
         console.log('template-area.default', $scope[0].attributes);
         console.log('template-area.default', $scope[0].attributes['data-id']);
         console.log('template-area.default', $scope[0].attributes['data-id'].value);
@@ -18,6 +19,8 @@
           console.log(strJQ);
           $(strJQ).show();
         });
+
+        */
 
     };
 
