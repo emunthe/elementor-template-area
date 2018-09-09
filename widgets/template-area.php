@@ -21,6 +21,11 @@ class Template_Area extends Base_Widget {
 		return __( 'Template Area', 'elementor-pro' );
 	}
 
+    public function get_categories() {
+		return [ 'template-area' ];
+	}
+
+
 	public function get_icon() {
 		return 'eicon-document-file';
 	}

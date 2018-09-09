@@ -43,6 +43,13 @@ class Template_Area_Links extends Widget_Base {
 		return 'template-area-links';
 	}
 
+
+
+    public function get_categories() {
+		return [ 'template-area' ];
+	}
+
+
 	/**
 	 * Get widget title.
 	 *

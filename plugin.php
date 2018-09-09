@@ -93,6 +93,25 @@ class Plugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Template_Area() );
 	}
 
+
+
+	function add_elementor_widget_categories( $elements_manager ) {
+
+		$elements_manager->add_category(
+			'template-area',
+			[
+				'title' => __( 'Template Area', 'template-area' ),
+				'icon' => 'fa fa-plug',
+			]
+		);
+
+	}
+	add_action( 'elementor/elements/categories_registered', 'add_elementor_widget_categories' );
+
+
+
+
+
 	/**
 	 *  Plugin class constructor
 	 *
@@ -106,7 +125,7 @@ class Plugin {
 		// Register widget scripts
 		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_scripts' ] );
 
-		// Register plugin style		
+		// Register plugin style
 		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_styles' ] );
 
 		// Register widgets
