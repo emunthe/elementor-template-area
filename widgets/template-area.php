@@ -18,7 +18,7 @@ class Template_Area extends Base_Widget {
 	}
 
 	public function get_title() {
-		return __( 'Template Area', 'elementor-pro' );
+		return __( 'Template Area', 'template-area' );
 	}
 
     public function get_categories() {
@@ -27,7 +27,7 @@ class Template_Area extends Base_Widget {
 
 
 	public function get_icon() {
-		return 'eicon-document-file';
+		return 'eicon-site-title';
 	}
 
 	public function get_keywords() {
@@ -42,7 +42,7 @@ class Template_Area extends Base_Widget {
 		$this->start_controls_section(
 			'section_template',
 			[
-				'label' => __( 'Template', 'elementor-pro' ),
+				'label' => __( 'Template', 'template-area' ),
 			]
 		);
 
@@ -63,7 +63,7 @@ class Template_Area extends Base_Widget {
 		}
 
 		$options = [
-			'0' => '— ' . __( 'Select', 'elementor-pro' ) . ' —',
+			'0' => '— ' . __( 'Select', 'template-area' ) . ' —',
 		];
 
 		$types = [];
@@ -76,7 +76,7 @@ class Template_Area extends Base_Widget {
 		$this->add_control(
 			'template_id',
 			[
-				'label' => __( 'Choose Template', 'elementor-pro' ),
+				'label' => __( 'Choose Template', 'template-area' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '0',
 				'options' => $options,

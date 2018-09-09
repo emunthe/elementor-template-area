@@ -12,21 +12,13 @@ use Elementor\Scheme_Typography;
 //use ElementorPro\Modules\Library\Module;
 
 
-
-
 if (! defined('ABSPATH')) {
     exit;
 } // Exit if accessed directly
 
 
-/**
- * Elementor tabs widget.
- *
- * Elementor widget that displays vertical or horizontal tabs with different
- * pieces of content.
- *
- * @since 1.0.0
- */
+
+
 class Template_Area_Links extends Widget_Base {
 
 	/**
@@ -61,7 +53,7 @@ class Template_Area_Links extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Template Area Links', 'elementor' );
+		return __( 'Template Area Links', 'template-area' );
 	}
 
 	/**
@@ -75,7 +67,7 @@ class Template_Area_Links extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-tabs';
+		return 'eicon-nav-menu';
 	}
 
 	/**
@@ -104,7 +96,7 @@ class Template_Area_Links extends Widget_Base {
 		$this->start_controls_section(
 			'section_tabs',
 			[
-				'label' => __( 'Tabs', 'elementor' ),
+				'label' => __( 'Tabs', 'template-area' ),
 			]
 		);
 
@@ -113,10 +105,10 @@ class Template_Area_Links extends Widget_Base {
 		$repeater->add_control(
 			'tab_title',
 			[
-				'label' => __( 'Title & Content', 'elementor' ),
+				'label' => __( 'Title & Content', 'template-area' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Tab Title', 'elementor' ),
-				'placeholder' => __( 'Tab Title', 'elementor' ),
+				'default' => __( 'Tab Title', 'template-area' ),
+				'placeholder' => __( 'Tab Title', 'template-area' ),
 				'label_block' => true,
 			]
 		);
@@ -124,9 +116,9 @@ class Template_Area_Links extends Widget_Base {
 		$repeater->add_control(
 			'tab_content',
 			[
-				'label' => __( 'Content', 'elementor' ),
-				'default' => __( 'Tab Content', 'elementor' ),
-				'placeholder' => __( 'Tab Content', 'elementor' ),
+				'label' => __( 'Content', 'template-area' ),
+				'default' => __( 'Tab Content', 'template-area' ),
+				'placeholder' => __( 'Tab Content', 'template-area' ),
 				'type' => Controls_Manager::WYSIWYG,
 				'show_label' => false,
 			]
@@ -135,17 +127,17 @@ class Template_Area_Links extends Widget_Base {
 		$this->add_control(
 			'tabs',
 			[
-				'label' => __( 'Tabs Items', 'elementor' ),
+				'label' => __( 'Tabs Items', 'template-area' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
-						'tab_title' => __( 'Tab #1', 'elementor' ),
-						'tab_content' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
+						'tab_title' => __( 'Tab #1', 'template-area' ),
+						'tab_content' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'template-area' ),
 					],
 					[
-						'tab_title' => __( 'Tab #2', 'elementor' ),
-						'tab_content' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor' ),
+						'tab_title' => __( 'Tab #2', 'template-area' ),
+						'tab_content' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'template-area' ),
 					],
 				],
 				'title_field' => '{{{ tab_title }}}',
@@ -155,7 +147,7 @@ class Template_Area_Links extends Widget_Base {
 		$this->add_control(
 			'view',
 			[
-				'label' => __( 'View', 'elementor' ),
+				'label' => __( 'View', 'template-area' ),
 				'type' => Controls_Manager::HIDDEN,
 				'default' => 'traditional',
 			]
@@ -164,12 +156,12 @@ class Template_Area_Links extends Widget_Base {
 		$this->add_control(
 			'type',
 			[
-				'label' => __( 'Type', 'elementor' ),
+				'label' => __( 'Type', 'template-area' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'horizontal',
 				'options' => [
-					'horizontal' => __( 'Horizontal', 'elementor' ),
-					'vertical' => __( 'Vertical', 'elementor' ),
+					'horizontal' => __( 'Horizontal', 'template-area' ),
+					'vertical' => __( 'Vertical', 'template-area' ),
 				],
 				'prefix_class' => 'elementor-template-area-view-',
 				'separator' => 'before',
@@ -181,7 +173,7 @@ class Template_Area_Links extends Widget_Base {
 		$this->start_controls_section(
 			'section_tabs_style',
 			[
-				'label' => __( 'Tabs', 'elementor' ),
+				'label' => __( 'Tabs', 'template-area' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -189,7 +181,7 @@ class Template_Area_Links extends Widget_Base {
 		$this->add_control(
 			'navigation_width',
 			[
-				'label' => __( 'Navigation Width', 'elementor' ),
+				'label' => __( 'Navigation Width', 'template-area' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'unit' => '%',
@@ -212,7 +204,7 @@ class Template_Area_Links extends Widget_Base {
 		$this->add_control(
 			'border_width',
 			[
-				'label' => __( 'Border Width', 'elementor' ),
+				'label' => __( 'Border Width', 'template-area' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 1,
@@ -232,7 +224,7 @@ class Template_Area_Links extends Widget_Base {
 		$this->add_control(
 			'border_color',
 			[
-				'label' => __( 'Border Color', 'elementor' ),
+				'label' => __( 'Border Color', 'template-area' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-tab-mobile-title, {{WRAPPER}} .elementor-tab-desktop-title.elementor-active, {{WRAPPER}} .elementor-tab-title:before, {{WRAPPER}} .elementor-tab-title:after, {{WRAPPER}} .elementor-tab-content, {{WRAPPER}} .elementor-template-area-content-wrapper' => 'border-color: {{VALUE}};',
@@ -243,7 +235,7 @@ class Template_Area_Links extends Widget_Base {
 		$this->add_control(
 			'background_color',
 			[
-				'label' => __( 'Background Color', 'elementor' ),
+				'label' => __( 'Background Color', 'template-area' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-tab-desktop-title.elementor-active' => 'background-color: {{VALUE}};',
@@ -255,7 +247,7 @@ class Template_Area_Links extends Widget_Base {
 		$this->add_control(
 			'heading_title',
 			[
-				'label' => __( 'Title', 'elementor' ),
+				'label' => __( 'Title', 'template-area' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -264,7 +256,7 @@ class Template_Area_Links extends Widget_Base {
 		$this->add_control(
 			'tab_color',
 			[
-				'label' => __( 'Color', 'elementor' ),
+				'label' => __( 'Color', 'template-area' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-tab-title' => 'color: {{VALUE}};',
@@ -279,7 +271,7 @@ class Template_Area_Links extends Widget_Base {
 		$this->add_control(
 			'tab_active_color',
 			[
-				'label' => __( 'Active Color', 'elementor' ),
+				'label' => __( 'Active Color', 'template-area' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-tab-title.elementor-active' => 'color: {{VALUE}};',
@@ -303,7 +295,7 @@ class Template_Area_Links extends Widget_Base {
 		$this->add_control(
 			'heading_content',
 			[
-				'label' => __( 'Content', 'elementor' ),
+				'label' => __( 'Content', 'template-area' ),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -312,7 +304,7 @@ class Template_Area_Links extends Widget_Base {
 		$this->add_control(
 			'content_color',
 			[
-				'label' => __( 'Color', 'elementor' ),
+				'label' => __( 'Color', 'template-area' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elementor-tab-content' => 'color: {{VALUE}};',
