@@ -472,6 +472,8 @@ class Template_Area_Links extends Widget_Base {
                 _.each( children, function( item, index ) {
                     $(item).click(function(ev) {
                         console.log('data-link=',index,ev);
+                        $(item).addClass('active');
+                        $(item).siblings().removeClass('active');
                     } )
                 });
 
