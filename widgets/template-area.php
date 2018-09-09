@@ -6,6 +6,8 @@ use ElementorPro\Base\Base_Widget;
 use ElementorPro\Modules\Library\Module;
 use ElementorPro\Plugin;
 
+use Elementor_Template_Area;
+
 if (! defined('ABSPATH')) {
     exit;
 } // Exit if accessed directly
@@ -89,13 +91,20 @@ class Template_Area extends Base_Widget {
 	}
 
 	protected function render() {
-		$template_id = $this->get_settings( 'template_id' );
+
+		//$template_id = $this->get_settings( 'template_id' );
+
+
+        //$template_id = Elementor_Template_Area::get_active_template_for_area( 'asdADeaD' ); // id = areas elementor element id !
+        $template_id = Elementor_Template_Area::get_active_template_for_area( 'sdeeaADWss' ); // id = areas elementor element id !
+
 		if ( 'publish' !== get_post_status( $template_id ) ) {
 			return;
 		}
 
+
 		?>
-		<div class="elementor-template">
+		<div class="elementor-template" >
 			<?php
 			echo Plugin::elementor()->frontend->get_builder_content_for_display( $template_id );
 			?>

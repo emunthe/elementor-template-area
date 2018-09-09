@@ -11,6 +11,7 @@ use Elementor\Scheme_Typography;
 use ElementorPro\Plugin;
 use ElementorPro\Modules\Library\Module;
 
+use Elementor_Template_Area;
 
 if (! defined('ABSPATH')) {
     exit;
@@ -100,6 +101,46 @@ class Template_Area_Links extends Widget_Base {
 			]
 		);
 
+        $template_areas = Elementor_Template_Area::get_template_areas();
+
+		if ( empty( $template_areas ) ) {
+
+			$this->add_control(
+				'no_template_areas',
+				[
+					'label' => false,
+					'type' => Controls_Manager::RAW_HTML,
+					'raw' => Module::empty_templates_message(),
+				]
+			);
+
+			return;
+		}
+
+		$options = [
+			'0' => '— ' . __( 'Select Template Area', 'template-area' ) . ' —',
+		];
+
+
+		foreach ( $template_areas as $template_area ) {
+			$options[ $template_area['template_area_id'] ] = $template_area['title'];
+		}
+
+
+        $this->add_control(
+			'template_area_select',
+			[
+				'label' => __( 'Choose Template Area', 'template-area' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => '0',
+				'options' => $options,
+				'label_block' => 'true',
+			]
+		);
+
+
+
+
 		$repeater = new Repeater();
 
 		$repeater->add_control(
@@ -171,10 +212,6 @@ class Template_Area_Links extends Widget_Base {
 				'title_field' => '{{{ link_title }}}',
 			]
 		);
-
-
-
-
 
 
 
@@ -400,9 +437,22 @@ class Template_Area_Links extends Widget_Base {
 	 */
 	protected function _content_template() {
 		?>
-		<div class="elementor-template-area" >
+		<div class="elementor-template-area-links" >
 			<#
+
             console.log('settings', settings);
+            console.log('view', view);
+            console.log('view.model', view.model);
+            console.log('view.options', view.options);
+            console.log('view.options.model', view.options.model);
+            console.log('view.options.model.attributes', view.options.model.attributes);
+            console.log('view.options.model.attributes.settings', view.options.model.attributes.settings);
+            console.log('view.$el', view.$el);
+
+            console.log('settings.template_area_select', settings.template_area_select);
+            console.log('settings.links', settings.links);
+
+
 			if ( settings.links ) {
 				var tabindex = view.getIDInt().toString().substr( 0, 3 );
 				#>
@@ -414,7 +464,21 @@ class Template_Area_Links extends Widget_Base {
 						<div class="elementor-template-area-link" data-link="{{ tabCount }}">{{{ item.link_title }}}</div>
 					<# } ); #>
 				</div>
-			<# } #>
+			<# }
+
+
+            setTimeout(function(){
+                var children = view.$el.find('[data-link]');
+                _.each( children, function( item, index ) {
+                    $(item).click(function(ev) {
+                        console.log('data-link=',index,ev);
+                    } )
+                });
+
+            },50);
+
+
+            #>
 		</div>
 		<?php
 	}

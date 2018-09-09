@@ -1,7 +1,7 @@
 (function($) {
     var WidgetTemplateAreaAreaHandler = function($scope, $) {
 
-        console.log('template-area-area.default', $scope);
+        //console.log('template-area-area.default', $scope);
         //console.log('template-area-area.default', $scope[0].attributes['data-id']);
         //console.log('template-area-area.default', $scope[0].attributes['data-id'].value);
 
@@ -9,19 +9,21 @@
 
     var WidgetTemplateAreaLinksHandler = function($scope, $) {
 
-        console.log('template-area-links.default', $scope);
+        //console.log('template-area-links.default', $scope);
+        //console.log('template-area-links.default view', $scope.view);
+
         //console.log('template-area-links.default', $scope[0].attributes['data-id']);
         //console.log('template-area-links.default', $scope[0].attributes['data-id'].value);
 
-        var thisElement = '.elementor-element-' + $scope[0].attributes['data-id'].value;
-        var thisElementTitle = thisElement + ' .elementor-template-area-link';
+        //var thisElement = '.elementor-element-' + $scope[0].attributes['data-id'].value;
+        //var thisElementTitle = thisElement + ' .elementor-template-area-link';
         //console.log(thisElementTitle);
 
-        $(thisElementTitle).click(function(ev) {
-          console.log( "Handler", ev);
+        //$(thisElementTitle).click(function(ev) {
+          //console.log( "Handler", ev);
           //console.log( "data-value", ev.currentTarget);
           //console.log( "data-value", ev.currentTarget.attributes);
-        });
+        //});
 
     };
 

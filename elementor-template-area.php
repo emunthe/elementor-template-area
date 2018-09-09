@@ -176,6 +176,34 @@ final class Elementor_Template_Area {
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 	}
+
+	static public function get_template_areas() {
+		return array(
+			array(
+				'template_area_id' => 'asdADeaD',
+				'title' => 'Main Page Area'
+			),
+			array(
+				'template_area_id' => 'sdeeaADWss',
+				'title' => 'Second Area'
+			),
+		);
+	}
+
+	static public function get_active_template_for_area( $template_area_id ) {
+		if ( $template_area_id == 'asdADeaD') {
+			return 9;
+		} else if ( $template_area_id == 'sdeeaADWss' ) {
+			return 33;
+		}
+
+	}
+
+	static public function add_template_area() {
+
+	}
+
+
 }
 
 // Instantiate Elementor_Template_Area.
