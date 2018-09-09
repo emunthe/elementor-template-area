@@ -72,8 +72,8 @@ class Plugin {
 	 * @access private
 	 */
 	private function include_widgets_files() {
+		require_once( __DIR__ . '/widgets/template-area-links.php' );
 		require_once( __DIR__ . '/widgets/template-area.php' );
-		//require_once( __DIR__ . '/widgets/inline-editing.php' );
 	}
 
 	/**
@@ -89,8 +89,8 @@ class Plugin {
 		$this->include_widgets_files();
 
 		// Register Widgets
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Template_Area_Links() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Template_Area() );
-		//\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Inline_Editing() );
 	}
 
 	/**
@@ -105,6 +105,8 @@ class Plugin {
 
 		// Register widget scripts
 		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_scripts' ] );
+
+		// Register plugin style		
 		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_styles' ] );
 
 		// Register widgets
