@@ -95,7 +95,7 @@ class Plugin {
 
 
 
-	function add_elementor_widget_categories( $elements_manager ) {
+	public function add_elementor_widget_categories( $elements_manager ) {
 
 		$elements_manager->add_category(
 			'template-area',
@@ -130,7 +130,7 @@ class Plugin {
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
 
 		// Add categories
-		add_action( 'elementor/elements/categories_registered', 'add_elementor_widget_categories' );
+		add_action( 'elementor/elements/categories_registered', [ $this, 'add_elementor_widget_categories' ] );
 
 
 	}
