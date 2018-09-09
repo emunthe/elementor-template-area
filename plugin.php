@@ -106,8 +106,6 @@ class Plugin {
 		);
 
 	}
-	add_action( 'elementor/elements/categories_registered', 'add_elementor_widget_categories' );
-
 
 
 
@@ -130,6 +128,11 @@ class Plugin {
 
 		// Register widgets
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+
+		// Add categories
+		add_action( 'elementor/elements/categories_registered', 'add_elementor_widget_categories' );
+
+
 	}
 }
 
