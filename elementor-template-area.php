@@ -11,7 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-define( '__VERSION__', 0.3 );
+define( '__VERSION__', 0.4 );
 
 /**
  * @since 1.2.0

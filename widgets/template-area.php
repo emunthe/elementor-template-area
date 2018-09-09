@@ -14,7 +14,7 @@ if (! defined('ABSPATH')) {
 class Template_Area extends Base_Widget {
 
 	public function get_name() {
-		return 'template-area';
+		return 'template-area-area';
 	}
 
 	public function get_title() {

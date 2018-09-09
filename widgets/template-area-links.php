@@ -8,8 +8,8 @@ use Elementor\Scheme_Color;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
 
-//use ElementorPro\Plugin;
-//use ElementorPro\Modules\Library\Module;
+use ElementorPro\Plugin;
+use ElementorPro\Modules\Library\Module;
 
 
 if (! defined('ABSPATH')) {
@@ -24,7 +24,7 @@ class Template_Area_Links extends Widget_Base {
 	/**
 	 * Get widget name.
 	 *
-	 * Retrieve tabs widget name.
+	 * Retrieve links widget name.
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -45,7 +45,7 @@ class Template_Area_Links extends Widget_Base {
 	/**
 	 * Get widget title.
 	 *
-	 * Retrieve tabs widget title.
+	 * Retrieve links widget title.
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -59,7 +59,7 @@ class Template_Area_Links extends Widget_Base {
 	/**
 	 * Get widget icon.
 	 *
-	 * Retrieve tabs widget icon.
+	 * Retrieve links widget icon.
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -81,11 +81,11 @@ class Template_Area_Links extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'tabs', 'accordion', 'toggle' ];
+		return [ 'links', 'accordion', 'toggle' ];
 	}
 
 	/**
-	 * Register tabs widget controls.
+	 * Register links widget controls.
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
@@ -94,16 +94,16 @@ class Template_Area_Links extends Widget_Base {
 	 */
 	protected function _register_controls() {
 		$this->start_controls_section(
-			'section_tabs',
+			'section_links',
 			[
-				'label' => __( 'Tabs', 'template-area' ),
+				'label' => __( 'links', 'template-area' ),
 			]
 		);
 
 		$repeater = new Repeater();
 
 		$repeater->add_control(
-			'tab_title',
+			'link_title',
 			[
 				'label' => __( 'Title & Content', 'template-area' ),
 				'type' => Controls_Manager::TEXT,
@@ -113,36 +113,72 @@ class Template_Area_Links extends Widget_Base {
 			]
 		);
 
+
+        $templates = Module::get_templates();
+
+		if ( empty( $templates ) ) {
+
+			$this->add_control(
+				'no_templates',
+				[
+					'label' => false,
+					'type' => Controls_Manager::RAW_HTML,
+					'raw' => Module::empty_templates_message(),
+				]
+			);
+
+			return;
+		}
+
+		$options = [
+			'0' => '— ' . __( 'Select', 'template-area' ) . ' —',
+		];
+
+		$types = [];
+
+		foreach ( $templates as $template ) {
+			$options[ $template['template_id'] ] = $template['title'] . ' (' . $template['type'] . ')';
+			$types[ $template['template_id'] ] = $template['type'];
+		}
+
 		$repeater->add_control(
-			'tab_content',
+			'template_id',
 			[
-				'label' => __( 'Content', 'template-area' ),
-				'default' => __( 'Tab Content', 'template-area' ),
-				'placeholder' => __( 'Tab Content', 'template-area' ),
-				'type' => Controls_Manager::WYSIWYG,
-				'show_label' => false,
+				'label' => __( 'Choose Template', 'template-area' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => '0',
+				'options' => $options,
+				'types' => $types,
+				'label_block' => 'true',
 			]
 		);
 
+
 		$this->add_control(
-			'tabs',
+			'links',
 			[
-				'label' => __( 'Tabs Items', 'template-area' ),
+				'label' => __( 'Link Items', 'template-area' ),
 				'type' => Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [
 					[
-						'tab_title' => __( 'Tab #1', 'template-area' ),
-						'tab_content' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'template-area' ),
+						'link_title' => __( 'Link #1', 'template-area' ),
 					],
 					[
-						'tab_title' => __( 'Tab #2', 'template-area' ),
-						'tab_content' => __( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'template-area' ),
+						'link_title' => __( 'Link #2', 'template-area' ),
 					],
 				],
-				'title_field' => '{{{ tab_title }}}',
+				'title_field' => '{{{ link_title }}}',
 			]
 		);
+
+
+
+
+
+
+
+
 
 		$this->add_control(
 			'view',
@@ -171,9 +207,9 @@ class Template_Area_Links extends Widget_Base {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
-			'section_tabs_style',
+			'section_links_style',
 			[
-				'label' => __( 'Tabs', 'template-area' ),
+				'label' => __( 'links', 'template-area' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -329,7 +365,7 @@ class Template_Area_Links extends Widget_Base {
 	}
 
 	/**
-	 * Render tabs widget output on the frontend.
+	 * Render links widget output on the frontend.
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
@@ -337,33 +373,25 @@ class Template_Area_Links extends Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		$tabs = $this->get_settings_for_display( 'tabs' );
+		$links = $this->get_settings_for_display( 'links' );
 
 		$id_int = substr( $this->get_id_int(), 0, 3 );
 		?>
-		<div class="elementor-template-area" role="template-area">
-			<div class="elementor-template-area-links">
+		<div class="elementor-template-area" >
+			<div class="elementor-template-area-links-wrapper">
 				<?php
-				foreach ( $tabs as $index => $item ) :
+				foreach ( $links as $index => $item ) :
 					$tab_count = $index + 1;
 					?>
-					<div <?php echo 'class="elementor-template-area-link" data-link="' . $tab_count . '"'; ?>><?php echo $item['tab_title']; ?></div>
+					<div <?php echo 'class="elementor-template-area-link" data-link="' . $tab_count . '"'; ?>><a href="#"><?php echo $item['link_title']; ?></a></div>
 				<?php endforeach; ?>
-			</div>
-			<div class="elementor-template-area-content">
-				<?php
-				foreach ( $tabs as $index => $item ) :
-					$tab_count = $index + 1;
-					?>
-					<div class="elementor-template-area-content-item" <?php echo 'data-content-link="' . $tab_count . '"'; ?>><?php echo $this->parse_text_editor( $item['tab_content'] ); ?></div>
-				<?php endforeach; ?>
-			</div>
+            </div>
 		</div>
 		<?php
 	}
 
 	/**
-	 * Render tabs widget output in the editor.
+	 * Render links widget output in the editor.
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
@@ -372,26 +400,18 @@ class Template_Area_Links extends Widget_Base {
 	 */
 	protected function _content_template() {
 		?>
-		<div class="elementor-template-area" role="tablist">
+		<div class="elementor-template-area" >
 			<#
-			if ( settings.tabs ) {
-                console.log( settings.tabs );
+            console.log('settings', settings);
+			if ( settings.links ) {
 				var tabindex = view.getIDInt().toString().substr( 0, 3 );
 				#>
-				<div class="elementor-template-area-wrapper">
+				<div class="elementor-template-area-links-wrapper">
 					<#
-					_.each( settings.tabs, function( item, index ) {
+					_.each( settings.links, function( item, index ) {
 						var tabCount = index + 1;
 						#>
-						<div class="elementor-template-area-link" data-link="{{ tabCount }}">{{{ item.tab_title }}}</div>
-					<# } ); #>
-				</div>
-				<div class="elementor-template-area-content-wrapper">
-					<#
-					_.each( settings.tabs, function( item, index ) {
-						var tabCount = index + 1,
-						#>
-						<div class="elementor-template-area-content" data-content-link={{{tabCount}}}>{{{ item.tab_content }}}</div>
+						<div class="elementor-template-area-link" data-link="{{ tabCount }}">{{{ item.link_title }}}</div>
 					<# } ); #>
 				</div>
 			<# } #>

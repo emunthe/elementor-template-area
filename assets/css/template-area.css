@@ -1,11 +1,12 @@
-.elementor-template-area {
-    border: 1px solid red;
+.elementor-template-area {}
+
+.elementor-template-area-links-wrapper {
+    overflow: hidden;
 }
 
-.elementor-template-area-title {
+.elementor-template-area-link {
     float: left;
-}
-
-.elementor-template-area .elementor-template-area-content {
-    display: none;
+    line-height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-right: 10px;
 }
