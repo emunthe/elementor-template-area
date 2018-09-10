@@ -7,14 +7,27 @@ plugins/elementor/includes/widgets/tabs.php
 plugins/elementor/includes/plugin.php
 /plugins/elementor/includes/frontend.php - builer save and get
 
+STUDY
+https://developers.elementor.com/creating-a-new-control/
 
 
-use Plugin::instance() to get instance.  Then can use functions.
+1) Template Area
 
-Looking for method to find all current class instances  (in page?)
+    Make new controll:  Template_Area_Name
+    Controll must update Area Array on save ( update );
 
-1) Template Area must look for Template Link Instance classes !
-2) Get template list for Link instance that is controlling - Areas Id
+    Render Template links
+
+
+2) Template link_setting
+
+    1) Control of Template area
+
+        On update link => Render page or render template-area
+
+    2) List of templates
+
+        default - yes
 
 TODO:
 

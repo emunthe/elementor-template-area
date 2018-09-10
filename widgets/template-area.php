@@ -48,44 +48,25 @@ class Template_Area extends Base_Widget {
 			]
 		);
 
-		$templates = Module::get_templates();
 
-		if ( empty( $templates ) ) {
-
-			$this->add_control(
-				'no_templates',
-				[
-					'label' => false,
-					'type' => Controls_Manager::RAW_HTML,
-					'raw' => Module::empty_templates_message(),
-				]
-			);
-
-			return;
-		}
-
-		$options = [
-			'0' => '— ' . __( 'Select', 'template-area' ) . ' —',
-		];
-
-		$types = [];
-
-		foreach ( $templates as $template ) {
-			$options[ $template['template_id'] ] = $template['title'] . ' (' . $template['type'] . ')';
-			$types[ $template['template_id'] ] = $template['type'];
-		}
-
-		$this->add_control(
-			'template_id',
+        $this->add_control(
+			'template_area_name',
 			[
-				'label' => __( 'Choose Template', 'template-area' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => '0',
-				'options' => $options,
-				'types' => $types,
-				'label_block' => 'true',
+				'label' => __( 'Title Area Name', 'template-area' ),
+				'type' => Controls_Manager::TEXT,
+				'default' => __( 'Name', 'template-area' ),
+				'placeholder' => __( 'Name', 'template-area' ),
+				'label_block' => true,
 			]
 		);
+
+
+
+
+
+
+
+
 
 		$this->end_controls_section();
 	}
@@ -110,8 +91,25 @@ class Template_Area extends Base_Widget {
 
 
 	protected function render() {
+        $post_id = get_the_ID();
+        $this_document = Plugin::elementor()->documents->get_doc_for_frontend( $post_id );
+        $this_data = $this_document->get_elements_data();
+        $link_setting = self::recursive_array_key_search($this_data, 'template_area_select');
+        $links_array = $link_setting[0]['links'];
+		?>
+		<div class="elementor-template-area" >
+			<?php
+                foreach ($links_array as $key => $value) {
+                    echo '<div class="elementor-template-area-item">';
+                    echo Plugin::elementor()->frontend->get_builder_content_for_display( $value['template_id'] );
+                    echo '</div>';
+                }
+			?>
+		</div>
+		<?php
 
-		$template_id = $this->get_settings( 'template_id' );
+
+        //$template_id = $this->get_settings( 'template_id' );
 
         // Look for Template Link Instances - specifically on page.
         // Plugin::instance()->
@@ -121,11 +119,19 @@ class Template_Area extends Base_Widget {
 
         //$currentElementsData = Plugin::elementor()->frontend->get_builder_content( 2 );
         //echo '<h1>get_builder_content</h1><pre>' . var_export( $currentElementsData, true ) . '</pre>';
+        /*
+        if ( 'publish' !== get_post_status( $template_id ) ) {
+			return;
+		}
+        */
 
-        $document = Plugin::elementor()->documents->get_doc_for_frontend( 2 );
-        $data = $document->get_elements_data();
-        $link_setting = self::recursive_array_key_search($data, 'template_area_select');
+        echo '<h1>get_id()</h1><pre>' . var_export( $this->get_id(), true ) . '</pre>';
+
+        echo '<h1>get_the_ID()</h1><pre>' . var_export( $post_id, true ) . '</pre>';
+
         echo '<h1>$link_setting</h1><pre>' . var_export( $link_setting, true ) . '</pre>';
+
+        echo '<h1>$links_array</h1><pre>' . var_export( $links_array, true ) . '</pre>';
 
         /*
         //Current Page stack
@@ -147,18 +153,6 @@ class Template_Area extends Base_Widget {
 
         */
 
-		if ( 'publish' !== get_post_status( $template_id ) ) {
-			return;
-		}
-
-
-		?>
-		<div class="elementor-template" >
-			<?php
-			echo Plugin::elementor()->frontend->get_builder_content_for_display( $template_id );
-			?>
-		</div>
-		<?php
 	}
 
 	public function render_plain_content() {}
