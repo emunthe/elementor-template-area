@@ -90,13 +90,62 @@ class Template_Area extends Base_Widget {
 		$this->end_controls_section();
 	}
 
+
+    static function recursive_array_key_search($array, $key)
+    {
+        $results = array();
+
+        if (is_array($array)) {
+            if (isset($array[$key]) ) {
+                $results[] = $array;
+            }
+
+            foreach ($array as $subarray) {
+                $results = array_merge($results, self::recursive_array_key_search($subarray, $key));
+            }
+        }
+
+        return $results;
+    }
+
+
 	protected function render() {
 
-		//$template_id = $this->get_settings( 'template_id' );
+		$template_id = $this->get_settings( 'template_id' );
+
+        // Look for Template Link Instances - specifically on page.
+        // Plugin::instance()->
+        // Plugin::elementor()
+        //echo '<pre>' . var_export( Plugin::elementor(), true ) . '</pre>';
 
 
-        //$template_id = Elementor_Template_Area::get_active_template_for_area( 'asdADeaD' ); // id = areas elementor element id !
-        $template_id = Elementor_Template_Area::get_active_template_for_area( 'sdeeaADWss' ); // id = areas elementor element id !
+        //$currentElementsData = Plugin::elementor()->frontend->get_builder_content( 2 );
+        //echo '<h1>get_builder_content</h1><pre>' . var_export( $currentElementsData, true ) . '</pre>';
+
+        $document = Plugin::elementor()->documents->get_doc_for_frontend( 2 );
+        $data = $document->get_elements_data();
+        $link_setting = self::recursive_array_key_search($data, 'template_area_select');
+        echo '<h1>$link_setting</h1><pre>' . var_export( $link_setting, true ) . '</pre>';
+
+        /*
+        //Current Page stack
+        $currentStacks = Plugin::elementor()->controls_manager->get_stacks();
+
+        $currentControlsData = Plugin::elementor()->controls_manager->get_controls_data('template-area-links');
+
+        $template_area_select = Plugin::elementor()->controls_manager->get_control_from_stack('template-area-links', 'template_area_select');
+
+
+        echo '<h1>$template_area_select</h1><pre>' . var_export( $template_area_select, true ) . '</pre>';
+
+        echo '<h1>get_stacks </h1><pre>' . var_export( $currentStacks['template-area-links'], true ) . '</pre>';
+
+
+        echo '<h1>get_controls_data</h1><pre>' . var_export( $currentControlsData, true ) . '</pre>';
+
+        //echo '<h1>get_stacks</h1><pre>' . var_export( $currentStacks['controls']['template_area_select'], true ) . '</pre>';
+
+        */
 
 		if ( 'publish' !== get_post_status( $template_id ) ) {
 			return;
