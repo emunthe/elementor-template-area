@@ -48,12 +48,12 @@ class Template_Area extends Base_Widget {
 			]
 		);
 
-
         $this->add_control(
 			'template_area_name',
 			[
 				'label' => __( 'Title Area Name', 'template-area' ),
-				'type' => Controls_Manager::TEXT,
+				//'type' => Controls_Manager::TEXT,
+				'type' => 'alttext',
 				'default' => __( 'Name', 'template-area' ),
 				'placeholder' => __( 'Name', 'template-area' ),
 				'label_block' => true,
@@ -108,7 +108,16 @@ class Template_Area extends Base_Widget {
 
         echo '<h1>find template_area_select</h1><pre>' . var_export( $links_array, true ) . '</pre>';
 
+        $controls = \Elementor\Plugin::instance()->controls_manager->get_controls();
+        $control_alt_text = \Elementor\Plugin::instance()->controls_manager->get_control('alt_text');
+
+
+        echo '<h1>get_control</h1><pre>' . var_export( $control_alt_text, true ) . '</pre>';
+
+
         /*
+        echo '<h1>get_controls</h1><pre>' . var_export( $controls, true ) . '</pre>';
+
         //Current Page stack
         $currentStacks = Plugin::elementor()->controls_manager->get_stacks();
         $currentControlsData = Plugin::elementor()->controls_manager->get_controls_data('template-area-links');

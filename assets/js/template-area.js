@@ -1,5 +1,4 @@
 (function($) {
-    console.log( 'HandlerModule', HandlerModule);
 
     var WidgetTemplateAreaAreaHandler = function($scope, $) {
 
@@ -11,6 +10,7 @@
 
     var WidgetTemplateAreaLinksHandler = function($scope, $) {
 
+        /*
         console.log('template-area-links.default $scope', $scope);
         console.log('template-area-links.default $', $);
         if ( window.elementorFrontend ) {
@@ -19,7 +19,7 @@
             console.log('window.elementorFrontend.getElements()',window.elementorFrontend.getElements());
         }
 
-        /*
+
         var LinksModule = HandlerModule.extend({
        	$activeContent: null,
 

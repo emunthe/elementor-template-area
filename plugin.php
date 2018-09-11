@@ -77,12 +77,18 @@ class Plugin {
 	}
 
 
+
+	public function register_controls_scripts() {
+		wp_register_script( 'alt-text-control', plugins_url( '/assets/js/alt-text-control.js', __FILE__ ), [ 'jquery' ], __VERSION__, true );
+		wp_enqueue_script( 'alt-text-control' );
+	}
+
 	/**
 	 * Include Controls files
 	 *
 	 */
 	private function include_controls_files() {
-		require_once( __DIR__ . '/controls/choose-template-area.php' );
+		require_once( __DIR__ . '/controls/alt-text.php' );
 	}
 
 
@@ -108,7 +114,7 @@ class Plugin {
 	public function register_controls() {
 		$this->include_controls_files();
 
-		\Elementor\Plugin::instance()->controls_manager->register_control( 'choose_template_area', new  Controls\Choose_Template_Area);
+		\Elementor\Plugin::instance()->controls_manager->register_control( 'alttext', new  Controls\Alt_Text);
 	}
 
 
@@ -148,6 +154,7 @@ class Plugin {
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
 
 		// Register controls
+		add_action( 'elementor/controls/controls_registered', [ $this, 'register_controls_scripts' ] );
 		add_action( 'elementor/controls/controls_registered', [ $this, 'register_controls' ] );
 
 

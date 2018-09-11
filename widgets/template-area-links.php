@@ -440,6 +440,7 @@ class Template_Area_Links extends Widget_Base {
 		<div class="elementor-template-area-links" >
 			<#
 
+            /*
             console.log('settings', settings);
             console.log('view', view);
             console.log('view.model', view.model);
@@ -451,7 +452,7 @@ class Template_Area_Links extends Widget_Base {
 
             console.log('settings.template_area_select', settings.template_area_select);
             console.log('settings.links', settings.links);
-
+            */
 
 			if ( settings.links ) {
 				var tabindex = view.getIDInt().toString().substr( 0, 3 );
@@ -466,7 +467,7 @@ class Template_Area_Links extends Widget_Base {
 				</div>
 			<# }
 
-
+            /*
             setTimeout(function(){
                 var children = view.$el.find('[data-link]');
                 _.each( children, function( item, index ) {
@@ -478,7 +479,7 @@ class Template_Area_Links extends Widget_Base {
                 });
 
             },50);
-
+            */
 
             #>
 		</div>
