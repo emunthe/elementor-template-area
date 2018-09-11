@@ -76,6 +76,16 @@ class Plugin {
 		require_once( __DIR__ . '/widgets/template-area.php' );
 	}
 
+
+	/**
+	 * Include Controls files
+	 *
+	 */
+	private function include_controls_files() {
+		require_once( __DIR__ . '/controls/choose-template-area.php' );
+	}
+
+
 	/**
 	 * Register Widgets
 	 *
@@ -92,6 +102,13 @@ class Plugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Template_Area_Links() );
 
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Template_Area() );
+	}
+
+
+	public function register_controls() {
+		$this->include_controls_files();
+
+		\Elementor\Plugin::instance()->controls_manager->register_control( 'chooseTemplateArea', new  Controls\Choose_Template_Area);
 	}
 
 
@@ -129,6 +146,10 @@ class Plugin {
 
 		// Register widgets
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+
+		// Register controls
+		add_action( 'elementor/controls/controls_registered', [ $this, 'register_controls' ] );
+
 
 		// Add categories
 		add_action( 'elementor/elements/categories_registered', [ $this, 'add_elementor_widget_categories' ] );

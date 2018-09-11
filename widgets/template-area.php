@@ -60,14 +60,6 @@ class Template_Area extends Base_Widget {
 			]
 		);
 
-
-
-
-
-
-
-
-
 		$this->end_controls_section();
 	}
 
@@ -108,49 +100,23 @@ class Template_Area extends Base_Widget {
 		</div>
 		<?php
 
-
-        //$template_id = $this->get_settings( 'template_id' );
-
-        // Look for Template Link Instances - specifically on page.
-        // Plugin::instance()->
-        // Plugin::elementor()
-        //echo '<pre>' . var_export( Plugin::elementor(), true ) . '</pre>';
-
-
-        //$currentElementsData = Plugin::elementor()->frontend->get_builder_content( 2 );
-        //echo '<h1>get_builder_content</h1><pre>' . var_export( $currentElementsData, true ) . '</pre>';
-        /*
-        if ( 'publish' !== get_post_status( $template_id ) ) {
-			return;
-		}
-        */
-
         echo '<h1>get_id()</h1><pre>' . var_export( $this->get_id(), true ) . '</pre>';
 
         echo '<h1>get_the_ID()</h1><pre>' . var_export( $post_id, true ) . '</pre>';
 
-        echo '<h1>$link_setting</h1><pre>' . var_export( $link_setting, true ) . '</pre>';
+        echo '<h1>get_doc_for_frontend and get_elements_data</h1><pre>' . var_export( $link_setting, true ) . '</pre>';
 
-        echo '<h1>$links_array</h1><pre>' . var_export( $links_array, true ) . '</pre>';
+        echo '<h1>find template_area_select</h1><pre>' . var_export( $links_array, true ) . '</pre>';
 
         /*
         //Current Page stack
         $currentStacks = Plugin::elementor()->controls_manager->get_stacks();
-
         $currentControlsData = Plugin::elementor()->controls_manager->get_controls_data('template-area-links');
-
         $template_area_select = Plugin::elementor()->controls_manager->get_control_from_stack('template-area-links', 'template_area_select');
-
-
         echo '<h1>$template_area_select</h1><pre>' . var_export( $template_area_select, true ) . '</pre>';
-
         echo '<h1>get_stacks </h1><pre>' . var_export( $currentStacks['template-area-links'], true ) . '</pre>';
-
-
         echo '<h1>get_controls_data</h1><pre>' . var_export( $currentControlsData, true ) . '</pre>';
-
         //echo '<h1>get_stacks</h1><pre>' . var_export( $currentStacks['controls']['template_area_select'], true ) . '</pre>';
-
         */
 
 	}
