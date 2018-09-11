@@ -108,7 +108,7 @@ class Plugin {
 	public function register_controls() {
 		$this->include_controls_files();
 
-		\Elementor\Plugin::instance()->controls_manager->register_control( 'chooseTemplateArea', new  Controls\Choose_Template_Area);
+		\Elementor\Plugin::instance()->controls_manager->register_control( 'choose_template_area', new  Controls\Choose_Template_Area);
 	}
 
 
