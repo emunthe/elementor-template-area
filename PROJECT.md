@@ -13,6 +13,9 @@ https://developers.elementor.com/creating-a-new-control/
 
 1) Template Area
 
+    QUESTION:   HOW IS CONTROLL BOUND TO SETTING (not updating via template) (marionette model binding?)
+        Where?
+
     Make new controll:  Template_Area_Name
     Controll must update Area Array on save ( update );
 

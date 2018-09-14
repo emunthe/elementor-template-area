@@ -51,8 +51,8 @@ class Alt_Text extends Base_Data_Control {
 			</div>
 		</div>
 		<#
-			// run js here?
-			
+			// run js here?   Where is binding ? 
+
 		#>
 		<# if ( data.description ) { #>
 			<div class="elementor-control-field-description">{{{ data.description }}}</div>

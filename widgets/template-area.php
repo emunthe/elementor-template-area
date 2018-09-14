@@ -100,6 +100,9 @@ class Template_Area extends Base_Widget {
 		</div>
 		<?php
 
+        $template_area_name_setting = self::recursive_array_key_search($this_data, 'template_area_name');
+        echo '<h1>get template_area_name_setting</h1><pre>' . var_export( $template_area_name_setting, true ) . '</pre>';
+
         echo '<h1>get_id()</h1><pre>' . var_export( $this->get_id(), true ) . '</pre>';
 
         echo '<h1>get_the_ID()</h1><pre>' . var_export( $post_id, true ) . '</pre>';
@@ -108,10 +111,13 @@ class Template_Area extends Base_Widget {
 
         echo '<h1>find template_area_select</h1><pre>' . var_export( $links_array, true ) . '</pre>';
 
-        $controls = \Elementor\Plugin::instance()->controls_manager->get_controls();
-        $control_alt_text = \Elementor\Plugin::instance()->controls_manager->get_control('alt_text');
 
 
+        //$controls = \Elementor\Plugin::instance()->controls_manager->get_controls();
+        $control_alt_text = \Elementor\Plugin::instance()->controls_manager->get_control('alttext');
+
+
+        //echo '<h1>get_controls</h1><pre>' . var_export( $controls, true ) . '</pre>';
         echo '<h1>get_control</h1><pre>' . var_export( $control_alt_text, true ) . '</pre>';
 
 
@@ -130,5 +136,21 @@ class Template_Area extends Base_Widget {
 
 	}
 
-	public function render_plain_content() {}
+    /**
+	 * Render heading widget output in the editor.
+	 *
+	 * Written as a Backbone JavaScript template and used to generate the live preview.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
+	protected function _content_template() {
+		?>
+		<#
+		console.log(settings);
+
+        
+		#>
+		<?php
+	}
 }
