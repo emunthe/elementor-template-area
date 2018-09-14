@@ -11,10 +11,16 @@ STUDY
 https://developers.elementor.com/creating-a-new-control/
 
 
+
+SET TEMPLATE ID = 1955 plugins/elementor/assets/js/editor.js
+
 1) Template Area
 
     QUESTION:   HOW IS CONTROLL BOUND TO SETTING (not updating via template) (marionette model binding?)
         Where?
+        settings are updated for backend (editor frontend)
+
+
 
     Make new controll:  Template_Area_Name
     Controll must update Area Array on save ( update );

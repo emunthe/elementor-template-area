@@ -147,10 +147,13 @@ class Template_Area extends Base_Widget {
 	protected function _content_template() {
 		?>
 		<#
-		console.log(settings);
+		console.log('settings',settings);
+		console.log('elementor.modules.elements',elementor.modules.elements);
+        console.log('elementorFrontend.getElements()',elementorFrontend.getElements());
+        console.log('elementorFrontend',elementorFrontend);
+        console.log('elementor', elementor);
 
-        
-		#>
+		#>{{settings.template_area_name}}
 		<?php
 	}
 }
