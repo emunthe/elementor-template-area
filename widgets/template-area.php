@@ -60,6 +60,46 @@ class Template_Area extends Base_Widget {
 			]
 		);
 
+        $templates = Module::get_templates();
+
+		if ( empty( $templates ) ) {
+
+			$this->add_control(
+				'no_templates',
+				[
+					'label' => false,
+					'type' => Controls_Manager::RAW_HTML,
+					'raw' => Module::empty_templates_message(),
+				]
+			);
+
+			return;
+		}
+
+		$options = [
+			'0' => '— ' . __( 'Select', 'elementor-pro' ) . ' —',
+		];
+
+		$types = [];
+
+		foreach ( $templates as $template ) {
+			$options[ $template['template_id'] ] = $template['title'] . ' (' . $template['type'] . ')';
+			$types[ $template['template_id'] ] = $template['type'];
+		}
+
+		$this->add_control(
+			'template_id',
+			[
+				'label' => __( 'Choose Template', 'elementor-pro' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => '0',
+				'options' => $options,
+				'types' => $types,
+				'label_block' => 'true',
+			]
+		);
+
+
 		$this->end_controls_section();
 	}
 
@@ -84,41 +124,38 @@ class Template_Area extends Base_Widget {
 
 	protected function render() {
         $post_id = get_the_ID();
-        $this_document = Plugin::elementor()->documents->get_doc_for_frontend( $post_id );
-        $this_data = $this_document->get_elements_data();
-        $link_setting = self::recursive_array_key_search($this_data, 'template_area_select');
-        $links_array = $link_setting[0]['links'];
+        //$this_document = Plugin::elementor()->documents->get_doc_for_frontend( $post_id );
+        //$this_data = $this_document->get_elements_data();
+        //$link_setting = self::recursive_array_key_search($this_data, 'template_area_select');
+        //$links_array = $link_setting[0]['links'];
+
+        $template_id = $this->get_settings( 'template_id' );
 		?>
 		<div class="elementor-template-area" >
 			<?php
-                foreach ($links_array as $key => $value) {
-                    echo '<div class="elementor-template-area-item">';
-                    echo Plugin::elementor()->frontend->get_builder_content_for_display( $value['template_id'] );
-                    echo '</div>';
-                }
+                //foreach ($links_array as $key => $value) {
+                    //echo '<div class="elementor-template-area-item">';
+                    echo Plugin::elementor()->frontend->get_builder_content_for_display( $template_id );
+                    //echo Plugin::elementor()->frontend->get_builder_content_for_display( $value['template_id'] );
+                    //echo '</div>';
+                //}
 			?>
 		</div>
 		<?php
 
-        $template_area_name_setting = self::recursive_array_key_search($this_data, 'template_area_name');
-        echo '<h1>get template_area_name_setting</h1><pre>' . var_export( $template_area_name_setting, true ) . '</pre>';
-
-        echo '<h1>get_id()</h1><pre>' . var_export( $this->get_id(), true ) . '</pre>';
-
-        echo '<h1>get_the_ID()</h1><pre>' . var_export( $post_id, true ) . '</pre>';
-
-        echo '<h1>get_doc_for_frontend and get_elements_data</h1><pre>' . var_export( $link_setting, true ) . '</pre>';
-
-        echo '<h1>find template_area_select</h1><pre>' . var_export( $links_array, true ) . '</pre>';
+        //$template_area_name_setting = self::recursive_array_key_search($this_data, 'template_area_name');
+        //echo '<h1>get template_area_name_setting</h1><pre>' . var_export( $template_area_name_setting, true ) . '</pre>';
+        //echo '<h1>get_id()</h1><pre>' . var_export( $this->get_id(), true ) . '</pre>';
+        //echo '<h1>get_the_ID()</h1><pre>' . var_export( $post_id, true ) . '</pre>';
+        //echo '<h1>get_doc_for_frontend and get_elements_data</h1><pre>' . var_export( $link_setting, true ) . '</pre>';
+        //echo '<h1>find template_area_select</h1><pre>' . var_export( $links_array, true ) . '</pre>';
 
 
 
         //$controls = \Elementor\Plugin::instance()->controls_manager->get_controls();
-        $control_alt_text = \Elementor\Plugin::instance()->controls_manager->get_control('alttext');
-
-
+        //$control_alt_text = \Elementor\Plugin::instance()->controls_manager->get_control('alttext');
         //echo '<h1>get_controls</h1><pre>' . var_export( $controls, true ) . '</pre>';
-        echo '<h1>get_control</h1><pre>' . var_export( $control_alt_text, true ) . '</pre>';
+        //echo '<h1>get_control</h1><pre>' . var_export( $control_alt_text, true ) . '</pre>';
 
 
         /*
@@ -144,16 +181,18 @@ class Template_Area extends Base_Widget {
 	 * @since 1.0.0
 	 * @access protected
 	 */
-	protected function _content_template() {
+    /*
+    protected function _content_template() {
 		?>
 		<#
-		console.log('settings',settings);
-		console.log('elementor.modules.elements',elementor.modules.elements);
-        console.log('elementorFrontend.getElements()',elementorFrontend.getElements());
-        console.log('elementorFrontend',elementorFrontend);
-        console.log('elementor', elementor);
+		//console.log('settings',settings);
+		//console.log('elementor.modules.elements',elementor.modules.elements);
+        //console.log('elementorFrontend.getElements()',elementorFrontend.getElements());
+        //console.log('elementorFrontend',elementorFrontend);
+        //console.log('elementor', elementor);
 
 		#>{{settings.template_area_name}}
 		<?php
 	}
+    */
 }

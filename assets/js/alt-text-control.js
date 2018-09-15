@@ -1,8 +1,5 @@
 jQuery( window ).on( 'elementor:init', function() {
 
-    console.log( 'elementor', elementor );
-    console.log( 'elementor.config', elementor.config );
-
     /*
 	var ControlAltTextItemView = elementor.modules.controls.BaseData.extend( {
         initialize: function() {

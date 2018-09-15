@@ -11,8 +11,24 @@ STUDY
 https://developers.elementor.com/creating-a-new-control/
 
 
+INVESTIGATION
+
+0) how does template change template? - control and editor js and php
+
+1) Use radio channel to get event listener in plugins
+
+2) Make options - save/update for plugin.   ( Find where this is done in elelemtor)
+
+2) Get Event from plugin controll - register event channel
+
+3) send events on
+    Register Area Name - get event in plugin main js and save options
 
 SET TEMPLATE ID = 1955 plugins/elementor/assets/js/editor.js
+
+
+
+
 
 1) Template Area
 

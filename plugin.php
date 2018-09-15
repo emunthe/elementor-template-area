@@ -92,6 +92,12 @@ class Plugin {
 	}
 
 
+	public function plugin_scripts() {
+		wp_register_script( 'template-area-plugin', plugins_url( '/assets/js/template-area-plugin.js', __FILE__ ), [ 'jquery' ], __VERSION__, true );
+		wp_enqueue_script( 'template-area-plugin' );
+	}
+
+
 	/**
 	 * Register Widgets
 	 *
@@ -161,6 +167,9 @@ class Plugin {
 		// Add categories
 		add_action( 'elementor/elements/categories_registered', [ $this, 'add_elementor_widget_categories' ] );
 
+
+
+		add_action( 'elementor/widgets/widgets_registered', [ $this, 'plugin_scripts' ] );
 
 	}
 }
