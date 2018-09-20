@@ -131,7 +131,8 @@ class Template_Area_Links extends Widget_Base {
 			'template_area_select',
 			[
 				'label' => __( 'Choose Template Area', 'template-area' ),
-				'type' => Controls_Manager::SELECT,
+				//'type' => Controls_Manager::SELECT,
+                'type' => 'altselect',
 				'default' => '0',
 				'options' => $options,
 				'label_block' => 'true',
@@ -186,7 +187,8 @@ class Template_Area_Links extends Widget_Base {
 			'template_id',
 			[
 				'label' => __( 'Choose Template', 'template-area' ),
-				'type' => Controls_Manager::SELECT,
+				//'type' => Controls_Manager::SELECT,
+                'type' => 'altselect',
 				'default' => '0',
 				'options' => $options,
 				'types' => $types,

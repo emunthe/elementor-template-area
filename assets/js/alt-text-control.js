@@ -1,22 +1,12 @@
 jQuery( window ).on( 'elementor:init', function() {
-
-    /*
-	var ControlAltTextItemView = elementor.modules.controls.BaseData.extend( {
-        initialize: function() {
-            console.log('this.ui', this.ui);
-        },
-		onReady: function() {
-			var self = this;
-		},
-		saveValue: function() {
-			this.setValue( this.ui.textarea.getText() );
-		},
-
-		onBeforeDestroy: function() {
-			this.saveValue();
-			this.ui.textarea.emojioneArea().destroy();
-		}
+	//var initialize = elementor.modules.controls.BaseData.prototype.initialize;
+	var ControlAltTextView = elementor.modules.controls.BaseData.extend( {
+    	onBaseInputChange: function( event ) {
+            console.log('INPUT EVENT', event);
+            var input = event.currentTarget;
+            console.log('value',this.getInputValue( input ));
+        }
 	} );
-	elementor.addControlView( 'altTextControl', ControlAltTextItemView );
-    */
+	elementor.addControlView( 'alttext', ControlAltTextView );
+
 } );

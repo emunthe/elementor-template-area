@@ -13,9 +13,10 @@ https://developers.elementor.com/creating-a-new-control/
 
 INVESTIGATION
 
-0) how does template change template? - control and editor js and php
+use messages to intra com
 
-1) Use radio channel to get event listener in plugins
+
+
 
 2) Make options - save/update for plugin.   ( Find where this is done in elelemtor)
 
