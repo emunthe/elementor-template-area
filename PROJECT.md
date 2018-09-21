@@ -75,11 +75,18 @@ AHA - REMOTE RENDER = CLASSES GENEREATE HTML on request through AJAX
       LOCAL RENDER IS FOR SERVER SIDE = FRONTEND ??
 
 
-STILL CANT FIND JS FOR EXECUTION OF TEMPLATE AREA VIEW
-$template_id = $this->get_settings( 'template_id' ); is this incorporated ?
 
+ATTACK:
 
+    1) Register Template Area with view/model cid for specific template area.
+        add to array
+        or generate array by getting list of template areas
 
+        PROBLEM - WIDGET DOES NOT HAVE EDITOR JS - has render js
+            how to read list of php widget classes (Widgets_Manager)
+            how to read list of js marionette widget classes (manager?)
+
+        
 
 
 

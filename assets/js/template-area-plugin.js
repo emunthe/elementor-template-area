@@ -10,12 +10,14 @@
             },
             linkRegister: function(view){
                 console.log('LINK REGISTER', view, view.cid);
+
             },
             areaRegister: function(view){
                 console.log('AREA REGISTER', view, view.model.cid);
+
+                console.log( 'view.get( settings )', view.model.get( 'settings' ) );
                 //view.updateElementModel( value, input );
-                //console.log('elementor.getControlView( view.model.cid )', elementor.getControlView( view.model.cid ) );
-                //console.log('elementor.getPanelView()', elementor.getPanelView() );
+
             },
             areaNameChange: function(view){
                 console.log('AREA NAME CHANGE', view);
