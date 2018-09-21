@@ -13,7 +13,71 @@ https://developers.elementor.com/creating-a-new-control/
 
 INVESTIGATION
 
-use messages to intra com
+BASE VIEW IS PARENT OF WIDGET VIEW - AND CONTAINS LISTENER FOR CHANGE ON SETTING
+elementor-git/assets/dev/js/editor/elements/views/base.js
+var editModel = this.getEditModel();  // This is this.model in BaseElementView -
+this.listenTo( editModel.get( 'settings' ), 'change', this.onSettingsChanged )
+
+INTERESTING - LISTENTO model.get('settings') - 'change'
+
+IN elementor-git/assets/dev/js/editor/controls/base-data.js
+
+setSettingsModel: function( value ) {
+    this.elementSettingsModel.set( this.model.get( 'name' ), value );
+
+    this.triggerMethod( 'settings:change' );
+},
+
+SO CONTROLL TRIGGERS SETTINGS:CHANGE - DOES IT AFTER settings change is detected!
+
+renderOnChange - MODEL MAKES RENDER REQUEST !
+DOES renderRemoteServer in elementor-git/assets/dev/js/editor/elements/models/element.js -
+    HAS DEFERED VARUABLE FOR RENDER:
+    onRemoteGetHtml: function( data ) {
+        this.setHtmlCache( data.render );
+        this.trigger( 'remote:render' );
+
+
+sends ajax - action 'elementor_ajax'      (with id and data)
+
+RECVIEVER: elementor-git/core/ajax-manager.php
+
+RECIEVER: elementor-git/includes/managers/widgets.php line 283
+Widgets_Manager::ajax_render_widget( $request )  
+ * Ajax render widget.
+ * Ajax handler for Elementor render_widget.
+ * Fired by `wp_ajax_elementor_render_widget` action.
+
+DOCUMENTS IS CLASS INSTANCE ARRAY  
+$document = Plugin::$instance->documents->get( $request['editor_post_id'] );
+
+THIS REPLYIES TO AJAX REQUEST WITH RENDERED CONTENT TO MARIONETTE !!
+
+OM RECIEPT OF RENDER HTML renderRemoteServer in elementor-git/assets/dev/js/editor/elements/models/element.js -
+    HAS DEFERED VARUABLE FOR RENDER:
+    onRemoteGetHtml: function( data ) {
+        this.setHtmlCache( data.render );
+        this.trigger( 'remote:render' );
+
+SETS CACHE IN MODEL and triggers remote:render
+
+WidgetView listens to remote render - elementor-git/assets/dev/js/editor/elements/views/widget.js
+'remote:render': this.onModelRemoteRender.bind( this )
+AND REPLACES ELEMENT IN DOM
+this.$el.removeClass( 'elementor-loading' );
+this.render();
+
+
+
+AHA - REMOTE RENDER = CLASSES GENEREATE HTML on request through AJAX
+      LOCAL RENDER IS FOR SERVER SIDE = FRONTEND ??
+
+
+STILL CANT FIND JS FOR EXECUTION OF TEMPLATE AREA VIEW
+$template_id = $this->get_settings( 'template_id' ); is this incorporated ?
+
+
+
 
 
 
