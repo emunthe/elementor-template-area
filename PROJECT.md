@@ -38,6 +38,8 @@ DOES renderRemoteServer in elementor-git/assets/dev/js/editor/elements/models/el
         this.trigger( 'remote:render' );
 
 
+
+
 sends ajax - action 'elementor_ajax'      (with id and data)
 
 RECVIEVER: elementor-git/core/ajax-manager.php
