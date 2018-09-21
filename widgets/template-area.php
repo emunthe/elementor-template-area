@@ -53,7 +53,7 @@ class Template_Area extends Base_Widget {
 			[
 				'label' => __( 'Title Area Name', 'template-area' ),
 				//'type' => Controls_Manager::TEXT,
-				'type' => 'alttext',
+				'type' => 'template_area_name',
 				'default' => __( 'Name', 'template-area' ),
 				'placeholder' => __( 'Name', 'template-area' ),
 				'label_block' => true,
@@ -181,7 +181,7 @@ class Template_Area extends Base_Widget {
 	 * @since 1.0.0
 	 * @access protected
 	 */
-    /*
+
     protected function _content_template() {
 		?>
 		<#
@@ -194,5 +194,5 @@ class Template_Area extends Base_Widget {
 		#>{{settings.template_area_name}}
 		<?php
 	}
-    */
+
 }

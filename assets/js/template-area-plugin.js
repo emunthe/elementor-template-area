@@ -4,12 +4,22 @@
         const TAMainView = window.Marionette.Application.extend( {
             initialize: function(){
                 console.log('Initialize TAMainView');
-                this.on('text-area-link:changed', this.linkChanged);
+                this.on('text-area-link:register', this.linkRegister);
+                this.on('text-area-area:register', this.areaRegister);
+                this.on('text-area-area:change:name', this.areaNameChange);
             },
-            linkChanged: function(options, link){
-                console.log('DETECTED CHANGE',options, link);
+            linkRegister: function(view){
+                console.log('LINK REGISTER', view, view.cid);
+            },
+            areaRegister: function(view){
+                console.log('AREA REGISTER', view, view.model.cid);
+                //view.updateElementModel( value, input );
+                //console.log('elementor.getControlView( view.model.cid )', elementor.getControlView( view.model.cid ) );
+                //console.log('elementor.getPanelView()', elementor.getPanelView() );
+            },
+            areaNameChange: function(view){
+                console.log('AREA NAME CHANGE', view);
             }
-
         } );
 
         const TAApp = window.Marionette.Application.extend( {

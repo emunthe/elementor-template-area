@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class Alt_Text extends Base_Data_Control {
+class Template_Area_Name extends Base_Data_Control {
 
 	/**
 	 * Get text control type.
@@ -28,7 +28,7 @@ class Alt_Text extends Base_Data_Control {
 	 * @return string Control type.
 	 */
 	public function get_type() {
-		return 'alttext';
+		return 'template_area_name';
 	}
 
 	/**
@@ -51,7 +51,7 @@ class Alt_Text extends Base_Data_Control {
 			</div>
 		</div>
 		<#
-			// run js here?   Where is binding ? 
+			// run js here?   Where is binding ?
 
 		#>
 		<# if ( data.description ) { #>
