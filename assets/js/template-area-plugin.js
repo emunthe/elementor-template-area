@@ -3,21 +3,30 @@
 
         const TAMainView = window.Marionette.Application.extend( {
             initialize: function(){
+                this.areaViews = [];
                 console.log('Initialize TAMainView');
-                this.on('text-area-link:register', this.linkRegister);
-                this.on('text-area-area:register', this.areaRegister);
-                this.on('text-area-area:change:name', this.areaNameChange);
+                this.on('text-area-link:control:register', this.linkControlRegister);
+
+                this.on('text-area-area:control:register', this.areaControlRegister);
+                this.on('text-area-area:control:change:name', this.areaNameChange);
+
+                this.on('text-area:widget:register', this.areaWidgetRegister);
             },
-            linkRegister: function(view){
-                console.log('LINK REGISTER', view, view.cid);
-
+            addAreaView: function(areaView){
+                this.areaViews.push(areaView);
             },
-            areaRegister: function(view){
-                console.log('AREA REGISTER', view, view.model.cid);
-
-                console.log( 'view.get( settings )', view.model.get( 'settings' ) );
-                //view.updateElementModel( value, input );
-
+            linkControlRegister: function(view){
+                console.log('LINK CONTROL REGISTER', view);
+            },
+            areaControlRegister: function(view){
+                console.log('AREA CONTROL REGISTER', view);
+            },
+            areaWidgetRegister: function(view){
+                console.log('AREA WIGET REGISTER', view);
+                console.log('Element view.get(widgetType)', view.get('widgetType'));
+                if ( view.get( 'widgetType' ) == 'template-area-area' ) {
+                    this.addAreaView(view);
+                }
             },
             areaNameChange: function(view){
                 console.log('AREA NAME CHANGE', view);
@@ -36,51 +45,22 @@
     }
 
 
-    /*
-    setTimeout(function () {
-        elementor.hooks.addAction( 'panel/open_editor/widget/template-area-area', function( panel, model, view ) {
-
-            console.log('panel/open_editor/widget/template-area-area',panel,model,view);
-
-            console.log('elementor.modules.controls.BaseData', elementor.modules.controls.BaseData);
-
-            var TemplateAreaControlHook = elementor.modules.controls.BaseData.extend( {
-                onBaseInputChange: function( event ) {
-            		elementor.modules.controls.BaseData.prototype.onBaseInputChange.apply( this, arguments );
-
-            		console.log('INPUT CHANGE', event);
-                },
-        	} );
-            elementor.addControlView( 'emojionearea', ControlEmojiOneAreaItemView );
-
-        } );
-    }, 2000);
-    */
-    /*
-    var TemplateAreaControlHook = elementor.modules.controls.BaseData.extend( {
-        initialize: function( options ) {
-    		elementor.modules.controls.BaseData.prototype.initialize.apply( this, arguments );
-            console.log('HERE');
-        },
-	} );
-    */
-
-    /*
-    setTimeout(function () {
-        $(window).elementor.channel.editor.on('status', function(arg) {
-            console.log('status', arg);
+    jQuery( window ).on( 'elementor:init', function() {
+        var orig_Element = elementor.modules.elements.models.Element.prototype;
+        var orig_Element_initialize = elementor.modules.elements.models.Element.prototype.initialize;
+        jQuery.extend( orig_Element, {
+            initialize: function(){
+                //console.log('Element initialize');
+                //console.log('Element cid', this.cid);
+                //console.log('Element this', this);
+                if( typeof this.get('widgetType') !== 'undefined') {
+                    window.ta_app.mainview.trigger('text-area:widget:register', this);
+                }
+                orig_Element_initialize.apply( this, arguments );
+            }
         });
-    }, 7000);
 
+    });
 
-    setSettingsModel: function( value ) {
-		ControlBaseView.prototype.setSettingsModel.apply( this, arguments );
-
-		console.log('setSettingsModel', this.model.get( 'name' ));
-	},
-
-
-
-    */
 
 })(jQuery);

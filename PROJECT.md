@@ -78,6 +78,15 @@ AHA - REMOTE RENDER = CLASSES GENEREATE HTML on request through AJAX
 
 ATTACK:
 
+FUCK:
+
+    OK NOW NEED TO GET TEMPLATE AREAS VIA PHP - BECAUSE OF CONTROLS REGISTER !!
+
+    SO Plugin::instance->Widgets_Manager get widgets - return settings?
+
+
+    HOW TO GET MODEL CID FROM CONTROL template-area-area
+
     1) Register Template Area with view/model cid for specific template area.
         add to array
         or generate array by getting list of template areas
@@ -86,7 +95,15 @@ ATTACK:
             how to read list of php widget classes (Widgets_Manager)
             how to read list of js marionette widget classes (manager?)
 
-        
+
+
+
+
+
+
+
+
+
 
 
 

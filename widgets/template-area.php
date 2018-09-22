@@ -181,7 +181,7 @@ class Template_Area extends Base_Widget {
 	 * @since 1.0.0
 	 * @access protected
 	 */
-    /*
+     /*
     protected function _content_template() {
 		?>
 		<#
@@ -193,7 +193,8 @@ class Template_Area extends Base_Widget {
 
 		#>{{settings.template_area_name}}
 		<?php
-	}
-    */
+	}*/
+
+
 
 }

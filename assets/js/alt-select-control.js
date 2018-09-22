@@ -1,6 +1,10 @@
 jQuery( window ).on( 'elementor:init', function() {
-	//var initialize = elementor.modules.controls.BaseData.prototype.initialize;
+	var initialize = elementor.modules.controls.BaseData.prototype.initialize;
 	var ControlAltSelectView = elementor.modules.controls.BaseData.extend( {
+		initialize: function(){
+			initialize.apply( this, arguments );
+			window.ta_app.mainview.trigger('text-area-link:control:register', this);
+		},
     	onBaseInputChange: function( event ) {
             //console.log('INPUT EVENT', event, this);
             var input = event.currentTarget;
