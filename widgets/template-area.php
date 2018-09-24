@@ -52,50 +52,11 @@ class Template_Area extends Base_Widget {
 			'template_area_name',
 			[
 				'label' => __( 'Title Area Name', 'template-area' ),
-				//'type' => Controls_Manager::TEXT,
-				'type' => 'template_area_name',
+				'type' => Controls_Manager::TEXT,
+				//'type' => 'template_area_name',
 				'default' => __( 'Name', 'template-area' ),
 				'placeholder' => __( 'Name', 'template-area' ),
 				'label_block' => true,
-			]
-		);
-
-        $templates = Module::get_templates();
-
-		if ( empty( $templates ) ) {
-
-			$this->add_control(
-				'no_templates',
-				[
-					'label' => false,
-					'type' => Controls_Manager::RAW_HTML,
-					'raw' => Module::empty_templates_message(),
-				]
-			);
-
-			return;
-		}
-
-		$options = [
-			'0' => '— ' . __( 'Select', 'elementor-pro' ) . ' —',
-		];
-
-		$types = [];
-
-		foreach ( $templates as $template ) {
-			$options[ $template['template_id'] ] = $template['title'] . ' (' . $template['type'] . ')';
-			$types[ $template['template_id'] ] = $template['type'];
-		}
-
-		$this->add_control(
-			'template_id',
-			[
-				'label' => __( 'Choose Template', 'elementor-pro' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => '0',
-				'options' => $options,
-				'types' => $types,
-				'label_block' => 'true',
 			]
 		);
 
@@ -129,16 +90,20 @@ class Template_Area extends Base_Widget {
         //$link_setting = self::recursive_array_key_search($this_data, 'template_area_select');
         //$links_array = $link_setting[0]['links'];
 
-        $template_id = $this->get_settings( 'template_id' );
+        //$template_id = $this->get_settings( 'template_id' );
+        $template_area_templates = $this->get_settings( 'template_area_templates' );
 		?>
 		<div class="elementor-template-area" >
 			<?php
-                //foreach ($links_array as $key => $value) {
-                    //echo '<div class="elementor-template-area-item">';
-                    echo Plugin::elementor()->frontend->get_builder_content_for_display( $template_id );
-                    //echo Plugin::elementor()->frontend->get_builder_content_for_display( $value['template_id'] );
-                    //echo '</div>';
-                //}
+                if ( !empty( $template_area_templates ) ) {
+                    foreach ($template_area_templates as $key => $value) {
+                        echo '<div class="elementor-template-area-item">';
+                        //echo Plugin::elementor()->frontend->get_builder_content_for_display( $template_id );
+                        echo Plugin::elementor()->frontend->get_builder_content_for_display( $value );
+                        echo '</div>';
+                    }
+                }
+
 			?>
 		</div>
 		<?php
@@ -185,7 +150,7 @@ class Template_Area extends Base_Widget {
     protected function _content_template() {
 		?>
 		<#
-		//console.log('settings',settings);
+		console.log('settings',settings);
 		//console.log('elementor.modules.elements',elementor.modules.elements);
         //console.log('elementorFrontend.getElements()',elementorFrontend.getElements());
         //console.log('elementorFrontend',elementorFrontend);

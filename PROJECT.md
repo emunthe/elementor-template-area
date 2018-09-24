@@ -84,6 +84,12 @@ FUCK:
 
     SO Plugin::instance->Widgets_Manager get widgets - return settings?
 
+    BUT NEED TO PUT DATA INTO MARIONETTE APP ALSO !?
+
+
+    OR - JUST HIJACK SETTINGS OBJECT IN CONTROL !!
+
+
 
     HOW TO GET MODEL CID FROM CONTROL template-area-area
 

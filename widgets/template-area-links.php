@@ -8,7 +8,7 @@ use Elementor\Scheme_Color;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
 
-use ElementorPro\Plugin;
+use Elementor\Plugin;
 use ElementorPro\Modules\Library\Module;
 
 use Elementor_Template_Area;
@@ -132,7 +132,7 @@ class Template_Area_Links extends Widget_Base {
 			[
 				'label' => __( 'Choose Template Area', 'template-area' ),
 				//'type' => Controls_Manager::SELECT,
-                'type' => 'altselect',
+                'type' => 'templateareaselect',
 				'default' => '0',
 				'options' => $options,
 				'label_block' => 'true',
@@ -188,8 +188,8 @@ class Template_Area_Links extends Widget_Base {
 			[
 				'label' => __( 'Choose Template', 'template-area' ),
 				//'type' => Controls_Manager::SELECT,
-                'type' => 'altselect',
-				'default' => '0',
+				'type' => 'templatearealinksselect',
+                'default' => '0',
 				'options' => $options,
 				'types' => $types,
 				'label_block' => 'true',

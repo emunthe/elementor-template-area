@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class Alt_Select extends Base_Data_Control {
+class Template_Area_links_Select extends Base_Data_Control {
 
 	/**
 	 * Get select control type.
@@ -30,7 +30,7 @@ class Alt_Select extends Base_Data_Control {
 	 * @return string Control type.
 	 */
 	public function get_type() {
-		return 'altselect';
+		return 'templatearealinksselect';
 	}
 
 	/**
