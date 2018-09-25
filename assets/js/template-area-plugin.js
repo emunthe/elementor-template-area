@@ -55,8 +55,8 @@
             linkTemplateLinksControlRegister: function(view){
                 console.log('TEMPLATE LINKS CONTROL REGISTER', view);
             },
-            linkTemplateLinksControlChanged: function(view){
-                console.log('TEMPLATE LINKS CHANGED', view);
+            linkTemplateLinksControlChanged: function(model, value){
+                console.log('TEMPLATE LINKS CHANGED', model,value);
                 var array_templ = [];
                 view.models.forEach( function(model){
                     array_templ.push( Number( model.get('template_id') ) );

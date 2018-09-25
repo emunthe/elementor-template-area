@@ -11,7 +11,7 @@ jQuery( window ).on( 'elementor:init', function() {
             var input = event.currentTarget;
             console.log('value',this.getInputValue( input ));
 			//console.log('view',this);
-			window.ta_app.mainview.trigger('text-area-link:control:linksselect:changed', this.elementSettingsModel.collection);
+			window.ta_app.mainview.trigger('text-area-link:control:linksselect:changed', this.elementSettingsModel, this.getInputValue( input ));
         },
 		setAreaEditSettings: function(){
 			// 1 get current area selected.

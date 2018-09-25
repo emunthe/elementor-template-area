@@ -85,12 +85,14 @@ class Template_Area extends Base_Widget {
 
 	protected function render() {
         $post_id = get_the_ID();
-        //$this_document = Plugin::elementor()->documents->get_doc_for_frontend( $post_id );
-        //$this_data = $this_document->get_elements_data();
-        //$link_setting = self::recursive_array_key_search($this_data, 'template_area_select');
-        //$links_array = $link_setting[0]['links'];
 
         //$template_id = $this->get_settings( 'template_id' );
+
+        /*
+            This is re rendered on settings change
+        */
+
+
         $template_area_templates = $this->get_settings( 'template_area_templates' );
 		?>
 		<div class="elementor-template-area" >
